@@ -13,6 +13,10 @@
       <header>
       </header>          
       <div class="letraContainer">
+        <ul id="buscaArtista-List" class="menu">
+        </ul>
+        <ul id="buscaMusica-List" class="menu">
+        </ul>
         <pre id='letra'>
             
         </pre>
@@ -21,10 +25,9 @@
       </main>
       <footer class="temaBlack">
         <div class="pesquisa" >
-          <input autocomplete="off" id='buscaArtista'  type='text' list="artlist" placeholder="Artista">
-          <datalist id="artlist"></datalist>
-          <input autocomplete="off" id='buscaMusica'   type='text' list="muslist" placeholder="Música" disabled='true'>      
-          <datalist id="muslist"></datalist>      
+          <input autocomplete="off" id='buscaArtista'  type='text' placeholder="Artista">          
+          <input autocomplete="off" id='buscaMusica'   type='text' placeholder="Música" disabled='true'>      
+          <div id="muslist"></div>      
         </div>
       </footer>
     </body>    

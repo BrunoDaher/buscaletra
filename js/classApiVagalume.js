@@ -1,11 +1,14 @@
 const url =  "https://api.vagalume.com.br";
 export class ApiVagalume {
     
-    getArtMusic(art,mus){                
-        let path = `${url}/search.artmus?apikey=660a4395f992ff67786584e238f501aa&q=${art}%20${mus}&limit=5`;
-        this.fetchApi(path);                
-        return JSON.parse(sessionStorage.getItem('temp'));
+    getArtMusic(art,mus){       
+        art = this.validaInput(art);
+        mus = this.validaInput(mus);
+        let path = `${url}/search.php?apikey=660a4395f992ff67786584e238f501aa&art=${art}&mus=${mus}`;
+        
+        return fetch(path);
     }
+
     getInfo(key,busca){        
       switch (key) {
         case 'buscaArtista':              
@@ -15,9 +18,10 @@ export class ApiVagalume {
             //return this.getMus();              
             return this.getMus(busca);
         break;    
-        case 'letra':                  
-        //const x = this.getMusicById(busca);        
-        return this.getMusicById(busca);        
+        case 'letraId':                     
+        return this.getMusicById(busca);                  
+        case 'letra':            
+        return this.getArtMusic(busca.art,busca.mus);
         break;   
         default:
         break;
@@ -56,12 +60,17 @@ export class ApiVagalume {
         return ret == null? []:JSON.parse(sessionStorage.getItem('response')).docs;
     }
     
+    validaInput(str){
+        str = str.toLowerCase();
+        str = str.replaceAll('.','');
+        str = str.replaceAll(' ','-');  
+
+        return str;
+    }
+
     getArtInfo(art){                
-        art = art.toLowerCase();
-        art = art.replaceAll('.','');
-        art = art.replaceAll(' ','-');           
-        let path = `https://www.vagalume.com.br/${art}/index.js`;      
-        
+        art = this.validaInput(art);
+        let path = `https://www.vagalume.com.br/${art}/index.js`;              
         this.fetchApi(path);        
     }
  
@@ -83,8 +92,6 @@ export class ApiVagalume {
                         //return 
                         r = JSON.parse(responseHtml).mus[0].text;                                                                        
                     }                 
-
-                    
                     sessionStorage.setItem(key,JSON.stringify(r));                  
                     
                     if(key=='artist'){                                     

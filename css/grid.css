@@ -22,13 +22,18 @@
 
     .letraContainer{
       top: 2.5em;
-      position: relative;
-      
+      position: relative;      
     }
 
-    .letraContainer >pre{
+    .letraContainer > pre{
       max-height: 80vh;
       overflow-y: scroll;
+      opacity: 0;
+      transition: all 0.3;
+    }
+
+    .letraContainer > pre.active{      
+      opacity: 1;
     }
 
   .grid > div:hover, .grid > div:focus{  

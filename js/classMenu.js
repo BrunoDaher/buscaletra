@@ -31,36 +31,28 @@ export class Menu extends Aux {
 
         //add listener - busca artista
         this.inputClean('click',this.inputBuscaArtista);
-        this.infoGet('input',this.inputBuscaArtista,'option','band',this.apiVagalume);        
-        this.albumLoad('change',this.inputBuscaArtista,this.apiVagalume,this.autoCompArtList,this.builder)                
+        this.infoGet('input',this.inputBuscaArtista,this.apiVagalume);        
+        
+        //change
+        this.inputBuscaArtista.addEventListener('change', ()=>{
+            //this.inputBuscaArtista.value = text;
+            this.loadInfo(this.inputBuscaArtista.value,this.apiVagalume);
+        });
         
         //add listener - busca musica
         this.inputClean('click',this.inputBuscaMusica);
-        this.infoGet('input',this.inputBuscaMusica,'option','desc',this.apiVagalume);        
+        this.infoGet('input',this.inputBuscaMusica);        
+        //this.infoGet('change',this.inputBuscaMusica,this.apiVagalume);        
         //this.lyricLoad('change',this.inputBuscaMusica,this.apiVagalume,this.autoCompMusList,this.builder)                        
 
-        this.inputBuscaMusica.addEventListener('change',event =>{            
-            let v = this.inputBuscaMusica.value;            
-            let musId;
-            event.target.list.childNodes.forEach(element => {                                
-                if(element.value == v){
-                    musId = element.id;                    
-                    //so falta plotar
-                ;}      //document.querySelector('#letra').innerText = x;
-                    //document.querySelector('#nomeLetra').innerText = v;
-            });             
+        
 
-            const x = this.apiVagalume.getInfo('letra',musId);                        
+        this.inputBuscaMusica.addEventListener('change',event =>{                               
+            let art = this.inputBuscaArtista.value;
+            let mus = this.inputBuscaMusica.value;
 
-            x.then((response) => response.json())
-            .then((data) => {
-                console.clear();
-                let x = data.mus[0].text;
-                
-                document.querySelector('#letra').innerHTML = x;
-                document.querySelector('#nomeMusica').innerText = v ;
-                document.querySelector('#nomeArtista').innerText = data.art.name ;
-                });     
+            let busca = {art:art,mus:mus};                        
+            this.loadLyrics(busca,'letra');
         });
     }
    

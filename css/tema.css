@@ -8,6 +8,19 @@ header{
 }
 
 
+::-webkit-scrollbar {
+    width: 2px;
+    height: 10px;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: rgba(90, 90, 90);
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.2);
+  }
+
 option{
  padding: 210px;
 }

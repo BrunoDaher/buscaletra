@@ -1,4 +1,8 @@
+import Api from './classApiVagalume.js'
 export class Aux{
+
+    api = new Api();
+    
 
     menuShow(seletor){
         document.querySelector(seletor).addEventListener('click', event => {                        
@@ -12,6 +16,10 @@ export class Aux{
 
     remClass(seletor,classe){        
         seletor.classList.remove(classe);            
+    }
+
+    addClass(seletor,nomeClasse){                
+        document.querySelector(seletor).classList.add(nomeClasse);        
     }
 
     toggle(div,nomeClasse){              
@@ -41,33 +49,52 @@ export class Aux{
     inputClean(type,input){
         input.addEventListener(type, event => {     
         input.value = '';
+        
         if(input.id=='buscaArtista'){
             document.querySelector('#buscaMusica').setAttribute('disabled','true');
         }
-        this.toggle('main','active');                        
-        //this.remClass(menu,'active');            
+        this.toggle('main','active');                                     
         });
     }
-    arrToDatalist(arr,dataList,node,item){                            
-        arr.forEach(elem => {             
-            let div = this.cria(node);                                  
+
+   arrToList(arr,input){                            
+    
+    let lista = document.querySelector(`#${input.id}-List`);
+    lista.innerHTML='';    
+    let item = 'desc';    
+    
+    if(input.id=='buscaArtista'){
+      item = 'band';
+
+    }
+        arr.forEach(elem => {                           
+            let div = this.cria('li');                                  
             div.id = elem.id;
-            div.append(item?elem[item]:elem);                  
-           dataList.append(div);
-       });
+            const text = item?elem[item]:elem;
+            //if(text.includes(input.value) || text == input.value){
+                div.append(text);                        
+                div.addEventListener('click', ()=>{
+                    input.value = text;                                 
+                    if(item=='band'){
+                        this.loadInfo(input.value);                                               
+                    }
+                    else{                    
+                        this.loadLyrics(elem.id,'letraId');                                               
+                    }
+                    lista.innerHTML=''
+                });
 
-       return dataList;
-   }
-    infoGet(type,input,node,item,apiVagalume){
+                lista.append(div);
+            //}           
+            });
+                    
+            return lista;
+        }
+    infoGet(type,input){
         input.addEventListener(type, event => {
-            
-            let normal = "ABCDEFGHIJKLMNOPQRSTUVWXYZ01234567890 ";
-            normal = normal + normal.toLowerCase();
-
-            if(normal.includes(event.data)){                                            
-                this.selfClean('#' + input.list.id);                                            
-                input.list.classList.add('active');
-                this.arrToDatalist(apiVagalume.getInfo(input.id, input.value),input.list,node,item);            
+            if(this.inputValido(event.data)){                                                            
+                let arr = this.apiVagalume.getInfo(input.id, input.value);   
+                this.arrToList(arr,input);            
             }            
             else{                
                 let v = input.value;
@@ -78,57 +105,30 @@ export class Aux{
         });
     }   
 
-     albumLoad(type,input,apiVagalume,datalist,builder){
-        
-        input.addEventListener(type, function(event) {                                                                    
-        //baixa dados do artista
-        apiVagalume.getArtInfo(input.value); 
-        
-        //habilita campo de busca de musica
-        document.querySelector('#buscaMusica').list.innerHTML='';
-        document.querySelector('#buscaMusica').removeAttribute('disabled');
-        document.querySelector('#buscaMusica').value=''
-
-            setTimeout( ()=>{          
-                datalist.innerHTML = "";            
-                //builder.loadDiscog();                                        
-                
-                }, '200');             
-        });
+    inputValido(texto){
+        let normal = "ABCDEFGHIJKLMNOPQRSTUVWXYZ01234567890 ";
+        normal = normal + normal.toLowerCase();
+        return normal.includes(texto) ? true:false;
     }
 
-    
-    loadDiscog(){        
-        let container = document.querySelector('#albuns');
-        let discografia = JSON.parse(sessionStorage.getItem('artist')).albums.item;
-        container.innerHTML = '';
-        
-        discografia.forEach(album => {                                     
-            let div = this.criaComp('div','album',album.desc);            
-            div.append(album.desc);
-            container.append(div);                             
-        });     
+    loadInfo(value){        
+        this.apiVagalume.getArtInfo(value); 
+            document.querySelector('#buscaMusica').removeAttribute('disabled');
+            document.querySelector('#buscaMusica').value='';
     }
 
-    loadLyrics(id){        
-        //let container = document.querySelector('#letra');
-        
-        
-        //container.innerHTML = '';
-        //console.log(container);
-        
-    }
+    loadLyrics(musId,type){        
+        const x = this.apiVagalume.getInfo(type,musId);
 
-     lyricLoad(type,input,apiVagalume,datalist,builder){
-        input.addEventListener(type, event => {                                                                                    
-            setTimeout( ()=>{          
-                this.loadLyrics(input.value);
-                //let discografia = JSON.parse(sessionStorage.getItem('artist')).albums.item;
-                //console.log(discografia);
-                }, '200');             
-        });
+        x.then((response) => response.json())
+        .then((data) => {                        
+            let x = data.mus[0].text;
+                document.querySelector('#letra').innerHTML = x;
+                this.addClass('#letra','active');                    
+                //document.querySelector('#nomeMusica').innerText = v ;
+                document.querySelector('#nomeArtista').innerText = data.art.name ;
+            });    
     }
-   
    
 }
 
