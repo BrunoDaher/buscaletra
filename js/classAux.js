@@ -61,18 +61,14 @@ export class Aux{
     
     let lista = document.querySelector(`#${input.id}-List`);
     lista.innerHTML='';    
-    let item = 'desc';    
-    
-    if(input.id=='buscaArtista'){
-      item = 'band';
-
-    }
+    let item = input.id=='buscaArtista'? 'band':'desc'
         arr.forEach(elem => {                           
             let div = this.cria('li');                                  
             div.id = elem.id;
             const text = item?elem[item]:elem;
-            //if(text.includes(input.value) || text == input.value){
+            if(text.includes(input.value) || text == input.value){
                 div.append(text);                        
+            
                 div.addEventListener('click', ()=>{
                     input.value = text;                                 
                     if(item=='band'){
@@ -85,9 +81,8 @@ export class Aux{
                 });
 
                 lista.append(div);
-            //}           
-            });
-                    
+            }           
+            });                    
             return lista;
         }
     infoGet(type,input){
