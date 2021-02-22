@@ -7,6 +7,11 @@ header{
     z-index: 1;
 }
 
+
+option{
+ padding: 210px;
+}
+
 fieldset{
     border-radius:4px;      
 }
@@ -58,6 +63,16 @@ legend{
     font-size: 1em;
 }
 
+footer{
+    position: fixed;
+    bottom: 0;
+    z-index: 1;    
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+}
+
 body{
     margin: 10px;
     padding: 10px;
@@ -73,6 +88,6 @@ code{ color:darkorange;}
     @media (max-width: 600px) {
         main{
             position: relative;
-            padding-top:7vh;
+            padding-top:10vh;
         }
     }

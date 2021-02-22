@@ -1,17 +1,31 @@
-<menu class="temaBlack">    
-    <div class="colapse">
-      <div><a onclick="toggle('menuInner')">M</a></div>
-      <div id='currentItem'></div>  
-      <li class='btnSumario'>_</li>           
+<div class='menu' _target='header'>    
+    <div class="colapse temaBlack">      
+      <div hidden id='currentItem'></div> 
+      
+    <button id='menuShow' class="bar">
+      <div></div>
+      <div></div>
+      <div></div>
+    </button>
+
+    
+    <div id="info">
+      <div id="nomeMusica">Musica</div>    
+      <div id="nomeArtista">Artista</div>    
     </div>
-    <div class='menuInner'>
-      <li class='headMenu' _target="inicio">Inicio</li>
-      <!---->
-      <li class='headMenu' _target="git">GIT</li>
-      <li class='headMenu' _target="api">APIs</li>
-      <li class='headMenu' _target="conceitos">CONCEITOS</li>
-      <li class='headMenu' _target="formularios">Forms</li>
-      <li class='headMenu' _target="navegacao">NAVEGACAO</li>             
-    </div>
-  </menu>               
+    
+
+    <button id='playlist' class="bar">
+      <div></div>
+      <div></div>
+      <div></div>
+    </button>
+
+  </div>
+  <div class='menuInner'>    
+     <li class='headMenu' _target="discog">Discos</li>
+      <!---->      
+     <li class='headMenu' _target="playlist">Playlist</li>             
+   </div>    
+  </div>               
   

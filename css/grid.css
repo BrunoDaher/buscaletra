@@ -1,45 +1,44 @@
 .grid{        
-    background-color:rgb(27, 27, 31);
-    height: 80vh;
-    width: 80vw;
+    background-color:rgb(27, 27, 31);    
+    position: relative;
+
+    height: fit-content;
+    width: 45vw;
 
     display: grid;
-    /*3 colunas*/
+    /*3 colunas
     grid-template-columns: 1fr 1fr 1fr;
-    /*3 linhas*/
+    /*3 linhas
     grid-template-rows: 1fr 1fr 1fr;
+    */
     /*Margem externa*/
     grid-gap: 5px;
   }
 
-  .gridSmall{    
-    display: grid;                
-  }
+  .grid.active{
+    opacity: 1;    
+    z-index: 3;
+    }
 
-  .gridSmall > div{
-    text-align: center;    
-    word-break: none;    
-  }
+    .letraContainer{
+      top: 2.5em;
+      position: relative;
+      
+    }
+
+    .letraContainer >pre{
+      max-height: 80vh;
+      overflow-y: scroll;
+    }
 
   .grid > div:hover, .grid > div:focus{  
     color:rgb(228, 228, 228);
     text-decoration: none;
     cursor: pointer;       
-    background:#c44614;    
-    animation: activeGridItem 2s;
+    background:#c44614;        
   }
  
-  @keyframes activeGridItem {
-    from {
-      font-size: 100%;
-    }
-    to {
-      font-size: 120%;
-      background:#53a7ea  !important;    
-    }
-  }
-
-  .centroFull, .grid > div{
+  .centroFull{
     display: grid;
     align-content: center;
     justify-content: center;
@@ -49,6 +48,7 @@
     background-color:rgb(25, 25, 25);        
     height: 100%;    
     cursor: pointer;
+    font-size: medium;
   }
 
  

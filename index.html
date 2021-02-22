@@ -1,18 +1,31 @@
 <!DOCTYPE html>
-<html lang="pt">
+<html lang="pt" contenteditable="false">
     <head>
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <title>Revisão Dev Web</title>
+      <title>BUSCA LETRA</title>
       <link rel="stylesheet" href="css/menu.css">
-        <link rel="stylesheet" href="css/tema.css">
-        <link rel="stylesheet" href="css/io.css">
-        <link rel="stylesheet" href="css/grid.css">        
-        <script src="js/builder.js"></script>                
-        <script src="js/menu.js"></script>        
+        <link rel="stylesheet" href="css/tema.css">        
+        <link rel="stylesheet" href="css/grid.css">                
+        <script type='module' src="js/index.mjs"></script>                
     </head>    
     <body class="temaBlack bodyGrid">
-      <header class=""></header>    
-      <main></main>
+      <header>
+      </header>          
+      <div class="letraContainer">
+        <pre id='letra'>
+            
+        </pre>
+      </div>  
+      <main>        
+      </main>
+      <footer class="temaBlack">
+        <div class="pesquisa" >
+          <input autocomplete="off" id='buscaArtista'  type='text' list="artlist" placeholder="Artista">
+          <datalist id="artlist"></datalist>
+          <input autocomplete="off" id='buscaMusica'   type='text' list="muslist" placeholder="Música" disabled='true'>      
+          <datalist id="muslist"></datalist>      
+        </div>
+      </footer>
     </body>    
 </html>

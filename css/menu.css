@@ -1,119 +1,145 @@
-menu li , legend{
+@import url("transicoes.css");
+@import url("io.css");
+
+.menu li , legend{
     padding: 2px 10px;    
     display: inline-block;
-    /* visual do link */
+    
     border-style: inset;
     border-width: 1px;
     border-color: #53a7ea;        
+    
     font-size: 2rem;        
     border-radius:7px;    
+    
   }
 
- 
+  #currentItem{
+    
+  }
 
-  menu{
-    text-align: center;
-    padding: 10px;
+  .menu{
+    position: relative;
+    text-align: center;    
     margin:10px;    
     text-transform: uppercase;    
-  }
- 
-   menu li:hover, menu li:focus , .headMenu.active{
+    padding: 0px;    
+    z-index: 1;
+  } 
+   .menu li:hover, .menu li:focus , .headMenu.active{
     color:247, 245, 245;
     text-decoration: none;
     cursor: pointer;       
-    background:#53a7ea;    
-    animation: active 0.2s;
+    background:#53a7ea;        
+    transition: all 0.2s;
+    /*animation: active 0.2s;*/
   }
 
-  @keyframes active {
-    from {
-      background-color: rgb(0, 0, 0);
-      color:247, 245, 245;
-    }
-    to {
-      background-color: #53a7ea;
-      color:rgb(247, 245, 245);
-    }
-  }
 
-  .floatMenu{
-    display: none;
-    row-gap: 4px;
-    position: fixed;    
-    padding: 1em;            
-    right: 1em;
-    z-index: 2;
-  }
-
-  .floatMenu .head{
-    text-align: center;
-    font-size: 20px;
-    background-color: #53a7ea;
+  .autoComplete{
+    margin-top: 1em;
+    font-size: 1.4em;
   }
 
   .colapse {
-      display: none;
+      display: none;      
+    align-items: flex-end;
   }
 
-  .softbox , .floatMenu{    
-      border-style: inset;
-      border-width: 1px;
-     border-radius: 7px;
-     border-color:black;
-     background-color:#1f1f1f
-  }
 
-    
   /*responsividade mobile*/
   @media (max-width: 600px) {
-    
-  
-    .colapse{
-      display:flex;
-      justify-content: space-between;
-    }
-    
-    .colapse div{
-      font-size:35px;
-      color:green;      
-      padding:2px auto;
+
+    .pesquisa{           
+      display: flex;
+      padding: 10px;
     }
 
-      menu li {
+      .colapse{
+        display:flex;
+        justify-content: space-between;        
+        margin: 10px;
+        padding: 5px;
+      }
+    
+      .menu li {
         display: grid;
         font-size: 2em;
         letter-spacing: 3px;
         line-height: 1em;
       }
 
-      @keyframes visible {
-        from {right:100vw;}
-        to {right:0;}
+      #nomeMusica{
+        font-size: 3vw;
+        text-align: left;
+      }
+
+      #nomeArtista{
+        font-size: 3vw;
+        font-style:italic;
+        text-transform: capitalize;
+      }
+
+      #info{
+        padding: 5px;
       }
 
       .menuInner{        
-        position: relative;        
-        right:100vw;
-        display: none;
-        margin-top: 10px;
+        position: absolute;
+        opacity: 0;
+        background-color: rgb(14, 13, 13);
+        transition: all 0.2s;
+        z-index: -4;
+        top: 0px;        
+        margin: 1em;
+      }
+      
+      .menuInner.active{                
+        display: block;                
+        opacity: 1;  
+        top:4em;    
+        z-index: -4;                
       }
 
-      .menuInner.active{
-        animation: visible 0.6s;                  
-        right:0;
-        display: block;
-      }
+        .menu{
+            top: 0;
+            left: 0;
+          margin: 0px;
+        }
 
-      menu{
-           top: 0;
-          left: 0;
-        margin: 0px;
-      }
-
-      fieldset{
+        fieldset{
           /*display:inline-flex;*/
           word-break: break-word;
+        }
+        
+        .autoComplete{   
+          background-color: #191717;
+          top: 3em;
+          display: grid;
+          row-gap: 6px;
+          font-size: 16px;
+          align-items: self-end;
+          text-align: left;
+          opacity: 0;          
+          position: relative;
+        }
+
+        .autoComplete.active{
+          opacity: 1;
+          padding: 12px;
+          
+        }
+
+        .autoComplete > div{
+          text-decoration: none;
+          font-size: 1.2em;
+          font-style: italic;
+          cursor: pointer;
+          font-weight: inherit;
+          transition: all 0.2s;
+          line-height: 1em;
+          text-transform: capitalize;
+          color: bisque;
         }
 
     }

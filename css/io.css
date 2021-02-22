@@ -1,7 +1,37 @@
 input{
     padding: 0px;    
-    position: relative;
-    bottom: 6px;
-    line-height: 25px;
-    border-radius: 4px;
+    position: relative;    
+    line-height: 6vh;
+    border-radius: 4px;    
+    font-size: 1.2em;
+    width: 70%;
+    text-transform: capitalize;
+    text-align: center;
 }
+
+input:hover{
+    cursor: pointer;
+}
+
+button:hover{
+    background:#53a7ea;           
+    cursor: pointer;  
+}
+
+button{
+    background:#2e3f4d;  border-style: inset;
+    border-width: 1px;
+    border-color: #53a7ea;            
+    border-radius:4px;
+}
+
+.bar > div{    
+    width: 35px;
+    height: 5px;
+    background-color: white;    
+    margin: 6px;
+    position: relative;     
+    border-radius:4px;
+}
+
+

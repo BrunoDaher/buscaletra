@@ -1,0 +1,30 @@
+    @keyframes rightToLeft {      
+      from {right:0;}
+      to {right:1em;}
+    }
+
+    @keyframes leftToRight {      
+      from {right:100vw;}
+      to {right:0;}
+    }
+
+    @keyframes active {
+    from {
+      background-color: rgb(0, 0, 0);
+      color:247, 245, 245;
+    }
+    to {
+      background-color: #53a7ea;
+      color:rgb(247, 245, 245);
+    }
+   }
+
+  @keyframes activeGridItem {
+    from {
+      font-size: 100%;
+    }
+    to {
+      font-size: 120%;
+      background:#53a7ea  !important;    
+    }
+  }
