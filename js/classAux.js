@@ -18,6 +18,10 @@ export class Aux{
         seletor.classList.remove(classe);            
     }
 
+    cloneHtml = (div,el)=>{
+        document.querySelector(div).innerHTML = el.innerHTML;
+    }
+
     addClass(seletor,nomeClasse){                
         document.querySelector(seletor).classList.add(nomeClasse);        
     }
@@ -62,26 +66,33 @@ export class Aux{
     let lista = document.querySelector(`#${input.id}-List`);
     lista.innerHTML='';    
     let item = input.id=='buscaArtista'? 'band':'desc'
-        arr.forEach(elem => {                           
-            let div = this.cria('div');                                  
-            div.id = elem.id;
-            div.className = 'menuItem';
-            const text = item?elem[item]:elem;
-            if(text.includes(input.value) || text == input.value){
-                div.append(text);                        
+        arr.forEach(elem => {                     
             
-                div.addEventListener('click', ()=>{
-                    //input.value = text;                                 
+            let musicaDaLista = this.cria('div');                                  
+            
+            musicaDaLista.id = elem.id;
+            musicaDaLista.className = 'menuItem';
+            
+            let text = item?elem[item]:elem;
+            
+            if(text.includes(input.value) || text == input.value){
+                musicaDaLista.append(text);                        
+            
+                musicaDaLista.addEventListener('click', ()=>{
+                    //atualiza o proprio input
+                    input.value = text;                                 
+                    
                     if(item=='band'){
                         this.loadInfo(input.value);                                               
                     }
+
                     else{                    
                         this.loadLyrics(elem.id,'letraId');                                               
                     }
                     lista.innerHTML=''
                 });
 
-                lista.append(div);
+                lista.append(musicaDaLista);
             }           
             });                    
             return lista;
@@ -90,6 +101,7 @@ export class Aux{
         input.addEventListener(type, event => {
             if(this.inputValido(event.data)){                                                            
                 let arr = this.apiVagalume.getInfo(input.id, input.value);   
+                //prepara para
                 this.arrToList(arr,input);            
             }            
             else{                
@@ -115,7 +127,6 @@ export class Aux{
 
     loadLyrics(musId,type){        
         const x = this.apiVagalume.getInfo(type,musId);
-
         x.then((response) => response.json())
         .then((data) => {                        
             let x = data.mus[0].text;
@@ -123,7 +134,7 @@ export class Aux{
                 this.addClass('#letra','active');                    
                 //document.querySelector('#nomeMusica').innerText = v ;
                 document.querySelector('#nomeArtista').innerText = data.art.name ;
-            });    
+         });    
     }
    
 }

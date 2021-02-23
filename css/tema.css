@@ -49,11 +49,6 @@ main a:hover, a:focus{
     color:rgb(53, 132, 206);    
 }
 
-menu li {            
-     list-style-type:disc;
-     position: relative;
-}
-
 fieldset > form {
     display: grid !important;
     padding: 17px;
@@ -92,6 +87,6 @@ code{ color:darkorange;}
             position: relative;
             padding: 0px;
             margin: 0px;
-            top: 3em;
+            top: 2em;
         }
     }

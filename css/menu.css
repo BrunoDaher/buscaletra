@@ -8,9 +8,15 @@
     border-radius:7px;        
   }
 
+  menu li {            
+    list-style-type:disc;
+    position: relative;
+}
+
   .listas{
     top: 10vh;
     font-size: 27px;    
+    padding: 10px;
   }
 
   .menu{    
@@ -33,8 +39,8 @@
       justify-content: space-between;
       display: flex;        
       justify-content: space-between;
-      margin: 7px;
-      padding: 7px;
+      margin: 3px;
+      padding: 3px;
   }
 
 

@@ -54,6 +54,7 @@ export class ApiVagalume {
     }
     
      getArt(art){        
+         art = this.validaInput(art);
         let path = `${url}/search.art?apikey=660a4395f992ff67786584e238f501aa&q=${art}%20&limit=10`;
         this.fetchApi(path);    
         let ret = JSON.parse(sessionStorage.getItem('response'));
