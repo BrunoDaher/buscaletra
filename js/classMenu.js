@@ -30,27 +30,23 @@ export class Menu extends Aux {
         }
 
         //add listener - busca artista
-        this.inputClean('click',this.inputBuscaArtista);
+        //this.inputClean('click',this.inputBuscaArtista);
         this.infoGet('input',this.inputBuscaArtista,this.apiVagalume);        
         
         //change
-        this.inputBuscaArtista.addEventListener('change', ()=>{
-            //this.inputBuscaArtista.value = text;
+        this.inputBuscaArtista.addEventListener('change', ()=>{            
             this.loadInfo(this.inputBuscaArtista.value,this.apiVagalume);
         });
         
         //add listener - busca musica
-        this.inputClean('click',this.inputBuscaMusica);
+        //this.inputClean('click',this.inputBuscaMusica);
         this.infoGet('input',this.inputBuscaMusica);        
         //this.infoGet('change',this.inputBuscaMusica,this.apiVagalume);        
         //this.lyricLoad('change',this.inputBuscaMusica,this.apiVagalume,this.autoCompMusList,this.builder)                        
 
-        
-
         this.inputBuscaMusica.addEventListener('change',event =>{                               
             let art = this.inputBuscaArtista.value;
             let mus = this.inputBuscaMusica.value;
-
             let busca = {art:art,mus:mus};                        
             this.loadLyrics(busca,'letra');
         });

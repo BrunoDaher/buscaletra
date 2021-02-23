@@ -71,7 +71,7 @@ export class Aux{
                 div.append(text);                        
             
                 div.addEventListener('click', ()=>{
-                    input.value = text;                                 
+                    //input.value = text;                                 
                     if(item=='band'){
                         this.loadInfo(input.value);                                               
                     }
