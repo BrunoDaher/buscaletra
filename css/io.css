@@ -1,28 +1,29 @@
-input{
-    padding: 0px;    
-    position: relative;    
-    line-height: 6vh;
-    border-radius: 4px;    
-    font-size: 1.2em;
-    width: 70%;
-    text-transform: capitalize;
-    text-align: center;
-}
-
-input:hover{
-    cursor: pointer;
-}
-
-button:hover{
-    background:#53a7ea;           
+button:hover, input:hover {              
     cursor: pointer;  
+    border:none;
+    outline: none;
+    
+}
+  pre.active{      
+    opacity: 1;
+  }
+
+  pre{
+    opacity: 0;
+    word-wrap: break-word;
+    text-align: center;
+    font-size: 1.5em;    
+    border-radius: 7px;
+    width: 100%;
+    white-space: break-spaces;
+    max-height: 75vh;
+    overflow-y: scroll;
 }
 
 button{
-    background:#2e3f4d;  border-style: inset;
-    border-width: 1px;
-    border-color: #53a7ea;            
-    border-radius:4px;
+    background:#21d36b;  
+    border:none;
+    border-radius:7px;       
 }
 
 .bar > div{    
@@ -31,7 +32,26 @@ button{
     background-color: white;    
     margin: 6px;
     position: relative;     
-    border-radius:4px;
+    border-radius:4px;    
+    padding: 0;
 }
 
 
+
+.pesquisa{           
+    display: flex;    
+    margin: 7px;
+  }
+
+
+.pesquisa > input, input:disabled{
+    font-size: 3em;  
+    margin:3px;
+    margin:3px;
+    line-height: 2.5em;        
+    border-radius: 4px;    
+    font-size: 24px;
+    width: 100%;
+    text-transform: capitalize;
+    text-align: center;      
+  }

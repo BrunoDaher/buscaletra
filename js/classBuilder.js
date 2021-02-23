@@ -7,8 +7,7 @@ export class Builder extends Aux{
 
     inicio(_menu){        
         this.menu = _menu;               
-        this.loadFrag('menu', 'header');    
-        this.loadFrag('discog', 'main');    
+        this.loadFrag('menu', 'header');            
     }
 
     loadFrag(url,divName){

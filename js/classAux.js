@@ -63,8 +63,9 @@ export class Aux{
     lista.innerHTML='';    
     let item = input.id=='buscaArtista'? 'band':'desc'
         arr.forEach(elem => {                           
-            let div = this.cria('li');                                  
+            let div = this.cria('div');                                  
             div.id = elem.id;
+            div.className = 'menuItem';
             const text = item?elem[item]:elem;
             if(text.includes(input.value) || text == input.value){
                 div.append(text);                        

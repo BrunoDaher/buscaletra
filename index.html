@@ -9,26 +9,23 @@
         <link rel="stylesheet" href="css/grid.css">                
         <script type='module' src="js/index.mjs"></script>                
     </head>    
-    <body class="temaBlack bodyGrid">
-      <header>
+    <body class="bodyGrid">
+      <header class="temaBlack">
       </header>          
-      <div class="letraContainer">
-        <ul id="buscaArtista-List" class="menu">
-        </ul>
-        <ul id="buscaMusica-List" class="menu">
-        </ul>
-        <pre id='letra'>
-            
-        </pre>
+      <div class="listas menu">
+        <div id="buscaArtista-List"></div>
+        <div id="buscaMusica-List"></div>
       </div>  
       <main>        
+        <pre id='letra' class="">
+            
+        </pre>
       </main>
       <footer class="temaBlack">
-        <div class="pesquisa" >
-          <input id='buscaArtista'  type='text' placeholder="Artista">          
-          <input id='buscaMusica'   type='text' placeholder="Música" disabled='true'>      
-          <div id="muslist"></div>      
-        </div>
+        <sector class="pesquisa" >
+          <input id='buscaArtista' type='text' placeholder="Artista">          
+          <input id='buscaMusica'  type='text' placeholder="Música" disabled='true'>                     
+        </sector>
       </footer>
     </body>    
 </html>
