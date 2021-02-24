@@ -87,6 +87,9 @@ code{ color:darkorange;}
             position: relative;
             padding: 0px;
             margin: 0px;
-            top: 2em;
+            top: 3em;
+            max-height: 80vh;
+            overflow-y: selfClean;
+            
         }
     }

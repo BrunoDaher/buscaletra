@@ -12,21 +12,22 @@
     <body class="bodyGrid">
       <header class="temaBlack">
       </header>          
-      <div id='listas' class="listas menu">
-        <div id="buscaArtista-List"></div>
-        <div id="buscaMusica-List"></div>
-      </div>  
+       
       <main>        
-        <pre id='letra' class="">
-            
+        <div id='listaDados' class="listas">
+          <div id="buscaArtista-List"></div>
+          <div id="buscaMusica-List"></div>
+        </div> 
+        <pre id='letra' class="">            
         </pre>
       </main>
       <footer class="temaBlack">
         <sector class="pesquisa" id='testes' >
-          <!--
-          <input id='buscaArtista' type='text' placeholder="Artista">          
-          -->
-          <input id='buscaMusica'  type='text' placeholder="Música" disabled='true'>                     
+         
+          <input id='buscaArtista' type='text' placeholder="Artista" autocomplete="off">          
+           
+          <input id='buscaMusica'  type='text' placeholder="Musica" disabled='true'>                     
+        <!---->
         </sector>
       </footer>
       <script type='module' src="js/index.mjs"></script>                

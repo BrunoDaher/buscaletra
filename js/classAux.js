@@ -1,9 +1,6 @@
 import Api from './classApiVagalume.js'
 export class Aux{
 
-    api = new Api();
-    
-
     menuShow(seletor){
         document.querySelector(seletor).addEventListener('click', event => {                        
             this.toggle('.menuInner','active');
@@ -18,8 +15,9 @@ export class Aux{
         seletor.classList.remove(classe);            
     }
 
-    cloneHtml = (div,el)=>{
+    insertHtml = (div,el)=>{
         document.querySelector(div).innerHTML = el.innerHTML;
+        return document.querySelector(div);
     }
 
     addClass(seletor,nomeClasse){                
@@ -32,11 +30,9 @@ export class Aux{
 
     selfClean(seletor){
         let elem = document.querySelector(seletor);
-        elem.innerHTML = '';            
-        //elem.removeAttribute('disabled');
+        elem.innerHTML = '';                    
         elem.value=''         
     }
-
 
    cria(tipo){
        let obj = document.createElement(tipo);
@@ -49,94 +45,11 @@ export class Aux{
        obj.className = nomeClasse;
        return obj;
    }
-
-    inputClean(type,input){
-        input.addEventListener(type, event => {     
-        input.value = '';
-        
-        if(input.id=='buscaArtista'){
-            document.querySelector('#buscaMusica').setAttribute('disabled','true');
-        }
-        this.toggle('main','active');                                     
-        });
-    }
-
-   arrToList(arr,input){                            
-    
-    let lista = document.querySelector(`#${input.id}-List`);
-    lista.innerHTML='';    
-    let item = input.id=='buscaArtista'? 'band':'desc'
-        arr.forEach(elem => {                     
-            
-            let musicaDaLista = this.cria('div');                                  
-            
-            musicaDaLista.id = elem.id;
-            musicaDaLista.className = 'menuItem';
-            
-            let text = item?elem[item]:elem;
-            
-            if(text.includes(input.value) || text == input.value){
-                musicaDaLista.append(text);                        
-            
-                musicaDaLista.addEventListener('click', ()=>{
-                    //atualiza o proprio input
-                    input.value = text;                                 
-                    
-                    if(item=='band'){
-                        this.loadInfo(input.value);                                               
-                    }
-
-                    else{                    
-                        this.loadLyrics(elem.id,'letraId');                                               
-                    }
-                    lista.innerHTML=''
-                });
-
-                lista.append(musicaDaLista);
-            }           
-            });                    
-            return lista;
-        }
-    infoGet(type,input){
-        input.addEventListener(type, event => {
-            if(this.inputValido(event.data)){                                                            
-                let arr = this.apiVagalume.getInfo(input.id, input.value);   
-                //prepara para
-                this.arrToList(arr,input);            
-            }            
-            else{                
-                let v = input.value;
-                if(event.data != null){
-                    input.value = v.substr(0, v.length - 1);
-                }
-            }
-        });
-    }   
-
     inputValido(texto){
         let normal = "ABCDEFGHIJKLMNOPQRSTUVWXYZ01234567890 ";
         normal = normal + normal.toLowerCase();
         return normal.includes(texto) ? true:false;
     }
-
-    loadInfo(value){        
-        this.apiVagalume.getArtInfo(value); 
-            document.querySelector('#buscaMusica').removeAttribute('disabled');
-            document.querySelector('#buscaMusica').value='';
-    }
-
-    loadLyrics(musId,type){        
-        const x = this.apiVagalume.getInfo(type,musId);
-        x.then((response) => response.json())
-        .then((data) => {                        
-            let x = data.mus[0].text;
-                document.querySelector('#letra').innerHTML = x;
-                this.addClass('#letra','active');                    
-                //document.querySelector('#nomeMusica').innerText = v ;
-                document.querySelector('#nomeArtista').innerText = data.art.name ;
-         });    
-    }
-   
 }
 
 export default Aux;

@@ -14,19 +14,31 @@
 }
 
   .listas{
-    top: 10vh;
-    font-size: 27px;    
-    padding: 10px;
+    position: fixed;
+    float: right;
+    bottom: 14vh;    
+    
+    border-radius: 7px;
+    width: 38%;
+    max-height: 40vh;
+    overflow-y: auto;
   }
-
+  .listas > div
+  { 
+    padding: 7px;
+    background-color: dodgerblue;
+    color: white;
+    cursor: pointer;
+  }
   .menu{    
     position: relative;
     text-align: center;        
     text-transform: uppercase;    
     z-index: 1;
   } 
-   .menuItem:hover, .menuItem:focus{
+   .menuItem:hover, .menuItem:focus,.listas > div:hover{
     color:247, 245, 245;
+    font-style: italic;
     text-decoration: none;
     cursor: pointer;       
     background:#53a7ea;      

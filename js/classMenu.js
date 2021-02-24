@@ -9,49 +9,17 @@ export class Menu extends Aux {
     }
 
     readMenu() {        
-        this.headMenu = document.querySelectorAll('.headMenu');        
-
-        this.inputBuscaArtista = document.querySelector('#buscaArtista');                
-        this.autoCompArtList = document.querySelector('#artlist');
-        
-        this.inputBuscaMusica = document.querySelector('#buscaMusica');                
-        this.autoCompMusList = document.querySelector('#muslist');
-              
+        this.headMenu = document.querySelectorAll('.headMenu');      
         this.menuInner = document.querySelector(".menuInner");
         this.menuShow('#menuShow');
     }
 
      menuInit(){    
         //create a array with the selector ".headMenu"            
-        this.readMenu();
-        
+        this.readMenu();        
         if(this.headMenu){                               
             this.headMenu.forEach(item => this.menuAddAction(item));   
         }
-
-        //add listener - busca artista
-        //this.inputClean('click',this.inputBuscaArtista);
-        //this.infoGet('input',this.inputBuscaArtista,this.apiVagalume);        
-        
-        //change
-        this.inputBuscaArtista.addEventListener('change', ()=>{            
-            //this.loadInfo(this.inputBuscaArtista.value,this.apiVagalume);
-            //this.inputBuscaMusica.focus();  
-        });
-        
-        //add listener - busca musica
-        //this.inputClean('click',this.inputBuscaMusica);
-        this.infoGet('input',this.inputBuscaMusica);        
-        this.infoGet('change',this.inputBuscaMusica,this.apiVagalume);        
-        //this.lyricLoad('change',this.inputBuscaMusica,this.apiVagalume,this.autoCompMusList,this.builder)                        
-
-        //change inputMusica
-        this.inputBuscaMusica.addEventListener('change',event =>{                               
-            let art = this.inputBuscaArtista.value;
-            let mus = this.inputBuscaMusica.value;
-            let busca = {art:art,mus:mus};                        
-            this.loadLyrics(busca,'letra');
-        });
     }
    
     menuAddAction(item){        

@@ -10,8 +10,14 @@ export class Factory  {
         this.elemento = document.createElement(type);
         this.elemento.id = name;
         this.elemento.className = classe;
-
         return this;
+    }
+    
+
+    getFromHtml(selector){
+        let elem = document.querySelector(selector);
+        //this.plotOn('#' + elem.parentElement.id);
+        return this.build(elem.nodeName,elem.id,elem.className);
     }
 
     setAction(action,handler){
@@ -27,10 +33,6 @@ export class Factory  {
 
     plotOn = (div)=>{                        
         document.querySelector(div).append(this.elemento);
-    }
-
-    arrToList = () =>{
-
     }
 
  
