@@ -5,9 +5,11 @@ export class Builder extends Aux{
         super();
     }
 
-    inicio(_menu){        
+    inicio(_menu){  
+        
         this.menu = _menu;               
-        this.loadFrag('menu', 'header');            
+        this.loadFrag('menu', 'header');     
+
     }
 
     loadFrag(url,divName){

@@ -9,7 +9,7 @@ header{
 
 
 ::-webkit-scrollbar {
-    width: 2px;
+    width: 0px;
     height: 10px;
   }
   
@@ -73,6 +73,16 @@ footer{
     right: 0;
     display: flex;
     justify-content: center;    
+    padding:1em
+}
+
+main{
+    position: relative;
+    padding: 5px;
+    margin: 8px;
+    top: 2.5em;
+    max-height: 72vh;
+    overflow-y: selfClean;
 }
 
 body{
@@ -84,12 +94,11 @@ code{ color:darkorange;}
 
     @media (max-width: 600px) {
         main{
-            position: relative;
-            padding: 0px;
-            margin: 0px;
-            top: 3em;
-            max-height: 80vh;
-            overflow-y: selfClean;
+        
             
+        }
+
+        pre{
+            top:0
         }
     }

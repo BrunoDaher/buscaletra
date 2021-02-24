@@ -9,6 +9,21 @@ const menu = new Menu(builder,apiVagalume);
 builder.loadFrag('menu','header');
 builder.inicio(menu);
 
+setTimeout(showPesq,100);
+
+function showPesq (){
+    let show = document.querySelector('#showPesq');
+    show.addEventListener('click',showBar);    
+}
+//alert(showPesq)    
+
+function showBar(){
+    let div = document.querySelector(this.getAttribute('toggle'));
+    div.classList.toggle('active');
+    document.querySelector('footer')
+}   
+   
+
 let inputArt = document.getElementById('buscaArtista');   
     inputArt.addEventListener('input',getArt);
     //inputArt.addEventListener('change',listMusics);
@@ -24,6 +39,12 @@ function listMusics(){
     apiVagalume.getArtInfo(musicaEscolhida); 
     document.querySelector('#buscaMusica').disabled = false;
     this.parentNode.innerHTML = '';
+}
+   
+
+function showPesquisa(){
+    this.classList.toggle('active');
+    document.querySelector('#testes').classList.toggle('active');   
 }
 
 function getMus() {

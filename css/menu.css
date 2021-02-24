@@ -14,26 +14,35 @@
 }
 
   .listas{
-    position: fixed;
-    float: right;
-    bottom: 14vh;    
-    
+    bottom: 14vh;
     border-radius: 7px;
-    width: 38%;
-    max-height: 40vh;
+    max-height: 65vh;
     overflow-y: auto;
   }
+
   .listas > div
   { 
     padding: 7px;
-    background-color: dodgerblue;
-    color: white;
+    background-color: #1e90ff;
+    color: #201f1f;
     cursor: pointer;
+    font-size: 2em;
+    padding: 1px;
+    margin: 3px;
+    color: white;
   }
+
+  #info{
+    text-align: left;
+    padding-left: 20px;
+    font-size: 22px;
+  } 
+
+  
   .menu{    
     position: relative;
     text-align: center;        
-    text-transform: uppercase;    
+    /* text-transform: uppercase;     */
     z-index: 1;
   } 
    .menuItem:hover, .menuItem:focus,.listas > div:hover{
@@ -47,8 +56,6 @@
     /*animation: active 0.2s;*/
   }
   .colapse {
-      display: flex;      
-      justify-content: space-between;
       display: flex;        
       justify-content: space-between;
       margin: 3px;
@@ -66,8 +73,6 @@
         line-height: 1em;
       }
 
-      #info{
-        padding: 5px;
-      } 
+    
 
     }

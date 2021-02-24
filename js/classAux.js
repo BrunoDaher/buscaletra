@@ -1,9 +1,9 @@
 import Api from './classApiVagalume.js'
 export class Aux{
 
-    menuShow(seletor){
+    menuShow(seletor,classe){
         document.querySelector(seletor).addEventListener('click', event => {                        
-            this.toggle('.menuInner','active');
+            this.toggle('.' + classe,'active');
         });
     }
 
