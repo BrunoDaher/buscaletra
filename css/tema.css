@@ -27,7 +27,7 @@ fieldset{
 }
 
 .temaBlack{
-    background-color: rgb(30, 30, 30);
+    background-color: rgb(35, 35, 35);
     color:rgb(228, 228, 228);
 }
 
@@ -71,17 +71,17 @@ footer{
     z-index: 1;    
     left: 0;
     right: 0;
-    display: flex;
-    justify-content: center;    
+    display: flex;    
     padding:1em
 }
 
 main{
+    
     position: relative;
     padding: 5px;
     margin: 8px;
-    top: 2.5em;
-    max-height: 72vh;
+    top: 7vh;
+    max-height: 83vh;
     overflow-y: selfClean;
 }
 

@@ -1,63 +1,86 @@
 import ApiVagalume from './classApiVagalume.js';
-import Builder from './classBuilder.js';
-import Menu from './classMenu.js';
+import Aux from './classAux.js';
 
 const apiVagalume = new ApiVagalume();
-const builder =  new Builder();
-const menu = new Menu(builder,apiVagalume);
+//const builder =  new Builder();
+const aux = new Aux();
 
-builder.loadFrag('menu','header');
-builder.inicio(menu);
+//builder.loadFrag('menu','header');
+//builder.inicio(menu);
 
-setTimeout(showPesq,100);
+init();
 
-function showPesq (){
+let x = 0;
+let y = 0;
+let xfinal = 0;
+let yfinal = 0;
+let mov = false;
+
+function init (){
     let show = document.querySelector('#showPesq');
-    show.addEventListener('click',showBar);    
+    show.addEventListener('click',showBar); 
+    let letra = document.querySelector('#letra');    
+    
+    
+    letra.addEventListener('touchstart',swippe,true);    
+    letra.addEventListener('touchend',swippe,true);    
+    letra.addEventListener('scroll',swippe,true);    
 }
-//alert(showPesq)    
+
+function swippe(e){
+    mov = !mov;
+    let scrollY;
+        if(e.type == 'touchstart'){                    
+            xfinal=0;            
+            y = e.changedTouches[0].clientY;
+            x = e.changedTouches[0].clientX;
+        }
+        else if(e.type == 'touchend'){
+            yfinal = e.changedTouches[0].clientY;
+            xfinal = e.changedTouches[0].clientX;
+            
+            scrollY = yfinal != y;
+
+            //if(!scrollY){
+                console.log(x > xfinal ? 'vai':'volta')             
+            //}
+        }
+}
 
 function showBar(){
-    let div = document.querySelector(this.getAttribute('toggle'));
+    
+    let div = document.querySelector('.container');
     div.classList.toggle('active');
     document.querySelector('footer')
 }   
    
-
 let inputArt = document.getElementById('buscaArtista');   
     inputArt.addEventListener('input',getArt);
     //inputArt.addEventListener('change',listMusics);
     
 let inputMus = document.getElementById('buscaMusica');  
     inputMus.addEventListener('input',getMus);
- // inputMus.addEventListener('change',()=>{list});
+   //inputMus.addEventListener('change',getMus);
 
-function listMusics(){
-    //inputArt.value = element.target.innerHTML    
+function listMusics(){    
     document.querySelector('#nomeArtista').innerText = this.innerHTML ;
     let musicaEscolhida = this.value ? this.value : inputArt.value = this.innerHTML;
     apiVagalume.getArtInfo(musicaEscolhida); 
     document.querySelector('#buscaMusica').disabled = false;
     this.parentNode.innerHTML = '';
 }
-   
-
-function showPesquisa(){
-    this.classList.toggle('active');
-    document.querySelector('#testes').classList.toggle('active');   
-}
 
 function getMus() {
     //this.value valor do campo
     const x = apiVagalume.getMusLocal(this.value);
 
-    let lista = menu.cria('div');
+    let lista = aux.cria('div');
     lista.id = 'buscaMusica-List';
 
     //cabe reduzir
     x.forEach(dado => {
         if(dado.desc.includes(this.value) || dado.band == this.value){ 
-            const div = menu.cria('div');  
+            const div = aux.cria('div');  
             div.className = 'muslist'; 
             div.id = dado.id;
             div.append(dado.desc);    
@@ -65,7 +88,7 @@ function getMus() {
         }   
     });
 
-    menu.insertHtml('#listaDados',lista);
+    aux.insertHtml('#listaDados',lista);
     refreshInputMus();    
 }
 
@@ -81,7 +104,7 @@ function refreshInputMus(){
 function getArt() {
        //recupera lista
     const art = apiVagalume.getArt(this.value);
-    let lista = menu.cria('div');
+    let lista = aux.cria('div');
     lista.id = 'buscaArtista-List';
 
     art.forEach(dado => {                        
@@ -93,7 +116,7 @@ function getArt() {
         }
     }); 
     
-    lista = menu.insertHtml('#listaDados',lista);
+    lista = aux.insertHtml('#listaDados',lista);
 
     document.querySelectorAll(`.${this.placeholder}`).forEach(element => {
         element.addEventListener('click',listMusics);
@@ -105,9 +128,10 @@ function getLetra(busca) {
           letra.then((response) => response.json())
                .then((data) => {
                 document.querySelector('#letra').innerHTML = data.mus[0].text;
-                menu.addClass('#letra','active');                    
+                aux.addClass('#letra','active');                    
                 document.querySelector('#nomeMusica').innerText = data.mus[0].name ;
                 document.querySelector('#nomeArtista').innerText = data.art.name ;
+                showBar();
 
     });    
 }

@@ -5,11 +5,9 @@ export class Builder extends Aux{
         super();
     }
 
-    inicio(_menu){  
-        
-        this.menu = _menu;               
-        this.loadFrag('menu', 'header');     
-
+    inicio(_menu){          
+        //this.menu = _menu;               
+        //this.loadFrag('menu', 'header');     
     }
 
     loadFrag(url,divName){
@@ -20,7 +18,7 @@ export class Builder extends Aux{
                 })
             .then( responseHtml =>  
                 {   
-                    this.loadHtml(responseHtml, divName, url); 
+                   // this.loadHtml(responseHtml, divName, url); 
                 })
             .catch(function (e) {        
                     console.log('Something went wrong. Descrição');
@@ -30,17 +28,10 @@ export class Builder extends Aux{
 
     loadHtml(responseHtml,divName,url){                                 
         document.querySelector(divName).innerHTML = responseHtml;
-        if(url == 'menu'){
-                this.menu.menuInit()
-            }
-            else{
-                //toggle memnu
-                let aux = new Aux();                
-                aux.toggle("#" + url,"active");   
-                //this.loadDiscog();       
-            }
+        let aux = new Aux();                
+        aux.toggle("#" + url,"active");   
     }
-
+    
 }
 
 export default Builder;

@@ -1,20 +1,27 @@
-button:hover, input:hover {              
+button:hover{              
     cursor: pointer;  
     border:none;
     outline: none;
-    
+    color:white;
+    background-color: #1e90ff;
+    transition: background-color 0.3s;
 }
   pre.active{      
-    opacity: 1;
+    opacity: 1;    
+    transition: all 0.4s;
+  }
+
+  placeholder{
+  color:white;  
   }
 
   pre{
     opacity: 0;
     text-align: center;
-    font-size: 1.3em;
-    top: 0vh;
+    font-size: 1.2em;
+    top: 1vh;
     white-space: break-spaces;
-    max-height: 82vh;
+    max-height: 76vh;
     overflow-y: scroll;
     margin: 0;
     padding: 0;
@@ -22,9 +29,10 @@ button:hover, input:hover {
  }
 
 button{
-    background:#21d36b;  
+    background:#545f77;  
     border:none;
-    border-radius:7px;       
+    border-radius:7px;      
+    transition: background-color 0.3s; 
 }
 
 .bar > div{    
@@ -45,24 +53,40 @@ button{
 .container
 {    
   z-index: 10;       
-  display: block;
-  width: 100%;
-  /* bottom: -10em; */
-  top: -10em;
+  display: block;  
   left: 0;
+  top: 4em;
   margin-left: 0;  
   position: fixed;
-  transition: all 0.2s;
-  }
-
-.container.active {    
-  top: 3em;
-  transition: all 0.2s;
-  
+  opacity: 0;
+  transition: opacity 0.2s;
 }
 
-.pesquisa > input, input:disabled{
- 
+.container.active {    
+  opacity: 1;
+  transition: all 0.2s;
+}
+
+.listas{    
+  border-radius: 7px;
+  max-height: 65vh;
+  overflow-y: auto;
+}
+
+.listas > div
+{ 
+  padding: 7px;
+  background-color: #1e90ff;
+  color: #201f1f;
+  cursor: pointer;
+  font-size: 2em;
+  padding: 1px;
+  margin: 3px;
+  color: white;
+}
+
+
+.pesquisa > input, input:disabled{ 
    font-size: 3em;  
     margin:3px;
     margin:3px;
