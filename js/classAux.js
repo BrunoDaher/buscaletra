@@ -51,6 +51,43 @@ export class Aux{
         normal = normal + normal.toLowerCase();
         return normal.includes(texto) ? true:false;
     }
+
+    swippe = {
+
+        x : 0,
+        y : 0,
+        xfinal : 0,
+        yfinal : 0,
+        mov : false,
+      
+        calc (e){
+            this.mov = !this.mov;
+            let scrollY;
+            console.log(e.type);
+          
+              
+                if(e.type == 'touchstart'){                    
+                    this.xfinal=0;            
+                    this.y = e.changedTouches[0].clientY;
+                    this.x = e.changedTouches[0].clientX;
+                }
+                else if(e.type == 'touchend'){
+                    this.yfinal = e.changedTouches[0].clientY;
+                    this. xfinal = e.changedTouches[0].clientX;          
+                    let dif  = parseFloat( this.yfinal) - parseFloat( this.y);
+                    dif = Math.abs(dif);
+                    scrollY = (dif < 40?true:false );
+                    console.log(scrollY + " -> " + dif)
+          
+                   // if(scrollY && dif > 120)
+                    if(scrollY){
+                       // navigateSet( this.x >  this.xfinal ? 1:-1);  
+                       console.log(this.x >  this.xfinal ? 1:-1)           
+                    }
+                }
+          }
+        
+        }
 }
 
 export default Aux;

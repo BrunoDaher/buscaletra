@@ -21,15 +21,23 @@ function init (){
     show.addEventListener('click',showBar); 
     let letra = document.querySelector('#letra');    
     
+    let swipper = aux.swippe;
     
-    letra.addEventListener('touchstart',swippe,true);    
-    letra.addEventListener('touchend',swippe,true);    
-    letra.addEventListener('scroll',swippe,true);    
+    letra.addEventListener('touchstart',swipper.calc);    
+    letra.addEventListener('touchend',swipper.calc);    
+    letra.addEventListener('scroll',swipper.calc);    
 }
 
-function swippe(e){
+function swippe(){
+    
+}
+
+function swippe2(e){
     mov = !mov;
     let scrollY;
+    console.log(e.type);
+  
+      
         if(e.type == 'touchstart'){                    
             xfinal=0;            
             y = e.changedTouches[0].clientY;
@@ -37,15 +45,19 @@ function swippe(e){
         }
         else if(e.type == 'touchend'){
             yfinal = e.changedTouches[0].clientY;
-            xfinal = e.changedTouches[0].clientX;
-            
-            scrollY = yfinal != y;
-
-            //if(!scrollY){
-                console.log(x > xfinal ? 'vai':'volta')             
-            //}
+            xfinal = e.changedTouches[0].clientX;          
+            let dif  = parseFloat(yfinal) - parseFloat(y);
+            dif = Math.abs(dif);
+            scrollY = (dif < 40?true:false );
+            console.log(scrollY + " -> " + dif)
+  
+           // if(scrollY && dif > 120)
+            if(scrollY){
+                navigateSet(x > xfinal ? 1:-1);             
+            }
         }
-}
+    
+  }
 
 function showBar(){
     
