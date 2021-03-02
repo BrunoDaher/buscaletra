@@ -72,17 +72,21 @@ footer{
     left: 0;
     right: 0;
     display: flex;    
-    padding:1em
+    padding:1em;
+    justify-content: space-between;
+    align-items: center;
+}
+
+footer > img{
+    width: 3em;
+    border-radius:4px;
 }
 
 main{
-    
     position: relative;
-    padding: 5px;
-    margin: 8px;
-    top: 7vh;
-    max-height: 83vh;
-    overflow-y: selfClean;
+ 
+    top: 4vh;
+    max-height: 84vh;
 }
 
 body{
@@ -99,6 +103,6 @@ code{ color:darkorange;}
         }
 
         pre{
-            top:0
+            top: 2vh;
         }
     }

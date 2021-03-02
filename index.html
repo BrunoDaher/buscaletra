@@ -20,14 +20,18 @@
             <div></div>
           </button>
 
+          <button id='favorite' class="" toggle='.container'>
+            Fav
+          </button>
+
         </div>               
       </div>       
       </header>       
 
       <section id='testes' class="container">
          <div class="pesquisa">    
-            <input id='buscaArtista' type='text' placeholder="Artista" autocomplete="off">
-            <input id='buscaMusica'  type='text' placeholder="Musica" disabled='true'> 
+            <input id='buscaArtista' _listaTarget ='#listaDados' type='text' placeholder="Artista" autocomplete="off">
+            <input id='buscaMusica' _listTarget ='#listaDados' type='text' placeholder="Musica" disabled='true'> 
          </div>
          <div id='listaDados' class="listas">   </div>
       </section>
@@ -42,6 +46,8 @@
           <div id="nomeMusica">Musica</div>    
           <div id="nomeArtista">Artista</div>    
         </div>
+        <img id = 'fotoArtista' src='' > 
+        
       </footer>
 
       <script type='module' src="js/index.mjs"></script>                

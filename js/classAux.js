@@ -1,4 +1,4 @@
-import Api from './classApiVagalume.js'
+
 export class Aux{
     
  
@@ -29,10 +29,8 @@ export class Aux{
         document.querySelector(div).classList.toggle(nomeClasse);
     }
 
-    selfClean(seletor){
-        let elem = document.querySelector(seletor);
-        elem.innerHTML = '';                    
-        elem.value=''         
+    selfClean(){
+        this.value='';
     }
 
    cria(tipo){

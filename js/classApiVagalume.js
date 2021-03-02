@@ -1,15 +1,20 @@
 const url =  "https://api.vagalume.com.br";
 export class ApiVagalume {
+
+    constructor(_dao){
+        this.apiKey = 'apiKey=660a4395f992ff67786584e238f501aa';
+        this.dao = _dao;
+    }
     
     getArtMusic(art,mus){       
         art = this.normalizeInput(art);
         mus = this.normalizeInput(mus);
-        let path = `${url}/search.php?apikey=660a4395f992ff67786584e238f501aa&art=${art}&mus=${mus}`;
+        let path = `${url}/search.php?${this.apiKey}&art=${art}&mus=${mus}`;
         
         return fetch(path);
     }
     getMusLocal(busca){
-        let mus = JSON.parse(sessionStorage.getItem('artist')).lyrics.item;   
+        let mus = this.dao.getSessionJSON('artist').lyrics.item;   
         let slim = [];
         
         mus.forEach(element => {                                                
@@ -20,24 +25,30 @@ export class ApiVagalume {
         });        
         return slim;        
     }
+
+   getCurrentFoto(){
+
+        return  `${url}/${this.dao.getSessionJSON('artist').pic_small}`;
+    }
   
-     getMusicById(musId){          
-        const path = `${url}/search.php?apikey=660a4395f992ff67786584e238f501aa&musid=${musId}`;
+    getMusicById(musId){          
+        const path = `${url}/search.php?${this.apiKey}&musid=${musId}`;
         return fetch(path);
      }
     
      getArt(art){        
-        art = this.normalizeInput(art);
-        let path = `${url}/search.art?apikey=660a4395f992ff67786584e238f501aa&q=${art}%20&limit=10`;
-        this.fetchApi(path);    
-        let ret = JSON.parse(sessionStorage.getItem('response'));
-        return ret == null? []:JSON.parse(sessionStorage.getItem('response')).docs;
+        art = this.normalizeInput(art);      
+        let path = `${url}/search.art?${this.apiKey}&q=${art}%20&limit=10`;      
+        return fetch(path);  
     }
-    
+
     normalizeInput(str){
         str = str.toLowerCase();
         str = str.replaceAll('.','');
         str = str.replaceAll(' ','-');  
+        //removeacentos
+        str = str.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+       
         return str;
     }
 
@@ -56,8 +67,7 @@ export class ApiVagalume {
             { 
               let key = Object.keys(JSON.parse(responseHtml))[0];              
               let r = JSON.parse(responseHtml)[key];
-              key ? sessionStorage.setItem(key,JSON.stringify(r)):"";        
-               
+              key ? sessionStorage.setItem(key,JSON.stringify(r)):"";    
             } )
         .catch(function (e) {       
             return 'erro' ;

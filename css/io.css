@@ -8,20 +8,24 @@ button:hover{
 }
   pre.active{      
     opacity: 1;    
-    transition: all 0.4s;
+    transition: all 0.3s;
   }
 
   pre{
     opacity: 0;
     text-align: center;
     font-size: 1.2em;
-    top: 1vh;
+    top: 2vh;
     white-space: break-spaces;
-    max-height: 76vh;
+    max-height: 73vh;
     overflow-y: scroll;
-    margin: 0;
-    padding: 0;
+    /* margin: 0em; */
+    /* padding: 0em; */
     position: relative;
+ }
+
+ button, input{
+  outline: none;
  }
 
 button{
@@ -55,22 +59,24 @@ button{
   opacity: 0;
   z-index: 0;
   transition: all 0.2s;
+  width: 100%;
 }
 
 .container.active {    
   z-index: 10;       
   display: block;  
   opacity: 1;
-  transition: all 0.2s;
+  transition: all 0.4s;
 }
 
-.listas{    
-  
-  border-radius: 7px;  
+.listas{   
+ 
   overflow-y: auto;
   top: 0em;
-  position: relative;
-  max-height: 74.5vh;
+  position: relative;  
+  background:white;
+  max-height: 65.5vh;
+    height: 65.5vh;
 }
 
 .listas > div
@@ -83,7 +89,7 @@ button{
   padding: 10px;
   margin: 9px;
   
-  border-radius: 7px;
+  border-radius:4px;
   text-align: center;
 }
 
@@ -98,4 +104,17 @@ button{
     text-transform: capitalize;
     text-align: center;      
     margin: 7px;
+  }
+
+  ::placeholder {
+    color: rgb(255, 255, 255);
+    opacity: 1; /* Firefox */
+  }
+  
+  :-ms-input-placeholder { /* Internet Explorer 10-11 */
+   color: rgb(255, 255, 255);
+  }
+  
+  ::-ms-input-placeholder { /* Microsoft Edge */
+   color: rgb(255, 255, 255);
   }

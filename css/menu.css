@@ -1,4 +1,4 @@
-@import url("transicoes.css");
+
 @import url("io.css");
 
 .menu li , legend{
@@ -7,6 +7,16 @@
     font-size: 2rem;        
     border-radius:7px;        
   }
+
+  .bar > div{    
+    width: 35px;
+    height: 5px;
+    background-color: white;    
+    margin: 6px;
+    position: relative;     
+    border-radius:4px;    
+    padding: 0;
+}
 
   menu li {            
     list-style-type:disc;
@@ -19,7 +29,7 @@
     padding: 7px;     
     z-index: 1;
   } 
-   .menuItem:hover, .menuItem:focus,.listas > div:hover{
+   .menuItem:hover, .menuItem:focus,.listas > div:hover,input:hover, input:focus{
     color:247, 245, 245;
     font-style: italic;
     text-decoration: none;
@@ -33,9 +43,8 @@
   
   
   #info{
-    text-align: left;
-    padding-left: 20px;
-    font-size: 22px;
+    text-align: left;   
+    font-size: 18px;
     line-height: 16px;  
   } 
 
