@@ -26,13 +26,18 @@ export class ApiVagalume {
         return slim;        
     }
 
-   getCurrentFoto(){
+    getFoto(band){
+        band = this.normalizeInput(band);
+        return `${url}/${band}/images/profile.jpg`
+    }
 
-        return  `${url}/${this.dao.getSessionJSON('artist').pic_small}`;
+   getCurrentFoto(){
+       //console.log(this.dao.getSessionJSON('artist').pic_small)
+        return  `${url}${this.dao.getSessionJSON('artist').pic_small}`;
     }
   
     getMusicById(musId){          
-        const path = `${url}/search.php?${this.apiKey}&musid=${musId}`;
+        const path = `${url}/search.php?${this.apiKey}&musid=${musId}`;       
         return fetch(path);
      }
     
@@ -42,10 +47,19 @@ export class ApiVagalume {
         return fetch(path);  
     }
 
+    modelMusica(data){
+        let id = data.mus[0].id
+        let letraMus =data.mus[0].text
+        let nomeMus = data.mus[0].name
+        let nomeArt = data.art.name
+        return {id,letraMus,nomeMus,nomeArt}
+    }
+
     normalizeInput(str){
         str = str.toLowerCase();
         str = str.replaceAll('.','');
         str = str.replaceAll(' ','-');  
+        str = str.replaceAll('/','-');  
         //removeacentos
         str = str.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
        

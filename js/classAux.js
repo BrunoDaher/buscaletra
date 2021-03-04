@@ -1,8 +1,17 @@
 
 export class Aux{
     
- 
-    menuShow(seletor,classe){
+
+   build(container,id){
+       let frag = fetch(`frags/${id}.html`);
+       frag.then((response) => response.text())
+            .then((data) => { 
+                console.log(data)
+            document.querySelector(container).innerHTML = data;
+        });  
+   }   
+
+     menuShow(seletor,classe){
         document.querySelector(seletor).addEventListener('click', event => {                        
             this.toggle('.' + classe,'active');
         });
@@ -38,12 +47,50 @@ export class Aux{
        return obj;
    }
 
-   criaComp(tipo,nomeClasse,id){
+
+   criaComp(tipo,nomeClasse,id){       
        let obj = this.cria(tipo);
        id ? obj.id = id:"";
        obj.className = nomeClasse;
        return obj;
    }
+
+    criaCustom(custom){       
+       // console.log(custom)
+       let obj = this.cria(custom.tipo);
+       //custom.id ? obj.id = custom.id:"";
+       obj.className = custom.nomeClasse;
+       return obj;
+   }
+        
+    arrayToList(custom){
+        let container = this.cria('div');
+        container.id = custom.id;
+      
+        let cont = 0;
+        
+        custom.arr.forEach(element => {
+            custom.nomeClasse = custom.classe[cont];
+            let div = this.criaCustom(custom)
+            div.append(element);
+            container.append(div);
+            cont++;
+            
+        });
+
+        return container;
+    }
+
+    normalizeInput(str){
+        str = str.toLowerCase();
+        str = str.replaceAll('.','');
+        str = str.replaceAll(' ','-');  
+        //removeacentos
+        str = str.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+       
+        return str;
+    }
+
     inputValido(texto){
         let normal = "ABCDEFGHIJKLMNOPQRSTUVWXYZ01234567890 ";
         normal = normal + normal.toLowerCase();
@@ -61,7 +108,7 @@ export class Aux{
         calc (e){
             this.mov = !this.mov;
             let scrollY;
-            console.log(e.type);
+          //  console.log(e.type);
           
               
                 if(e.type == 'touchstart'){                    
@@ -75,7 +122,7 @@ export class Aux{
                     let dif  = parseFloat( this.yfinal) - parseFloat( this.y);
                     dif = Math.abs(dif);
                     scrollY = (dif < 40?true:false );
-                    console.log(scrollY + " -> " + dif)
+                  //  console.log(scrollY + " -> " + dif)
           
                    // if(scrollY && dif > 120)
                     if(scrollY){

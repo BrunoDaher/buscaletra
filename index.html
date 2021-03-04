@@ -8,48 +8,56 @@
         <link rel="stylesheet" href="css/tema.css">        
         <link rel="stylesheet" href="css/grid.css">                        
     </head>    
+
+    
     
     <body class="bodyGrid">
       <header class="temaBlack">
-        <div class='menu' _target='header'>    
-          <div class="colapse temaBlack">                     
-
+        <div id='menu' class='menu' _target='header'>    
+          <div class="colapse temaBlack">                 
            <button id='showPesq' class="bar" toggle='.container'>
             <div></div>
             <div></div>
             <div></div>
           </button>
-
-          <button id='favorite' class="" toggle='.container'>
+          <button id='favorite' class="" toggle='.playlist'>
             Fav
-          </button>
-
+          </button>          
+          <input type='button' id='btnPlaylist' toggle='.playlist' value='Playlist'>
         </div>               
       </div>       
       </header>       
 
-      <section id='testes' class="container">
-         <div class="pesquisa">    
-            <input id='buscaArtista' _listaTarget ='#listaDados' type='text' placeholder="Artista" autocomplete="off">
-            <input id='buscaMusica' _listTarget ='#listaDados' type='text' placeholder="Musica" disabled='true'> 
-         </div>
-         <div id='listaDados' class="listas">   </div>
+      <section id='pesquisa' class="container">
+            <div class="pesquisa">    
+              <input id='buscaArtista' _listaTarget ='#listaDados' type='text' placeholder="Artista" autocomplete="off">
+              <input id='buscaMusica' _listTarget ='#listaDados' type='text' placeholder="Musica" disabled='true'> 
+      </div>
+            
+          
+            <div id='listaDados' class="listas"></div>
+
       </section>
-     
-      <main>        
-        <pre id='letra' class="">          
-        </pre>
-      </main>
+        
+    <div id='playlist' class='playlist'>
+      <input class="temaBlack" placeholder="Lista de músicas"></input>
+      <div class="info box">
+      <div id="playlistItem"></div>
+      </div>
+    </div>
+
+    <main>
+        <pre id='letra' class=""></pre>
+    </main>
       
       <footer class="temaBlack">
         <div id="info">
-          <div id="nomeMusica">Musica</div>    
-          <div id="nomeArtista">Artista</div>    
+          <div id="nomeMusica" class="subMus">Musica</div>    
+          <div id="nomeArtista" class="subArt">Artista</div>    
         </div>
-        <img id = 'fotoArtista' src='' > 
-        
+        <img id = 'fotoArtista' src='' >         
       </footer>
-
+      
       <script type='module' src="js/index.mjs"></script>                
 
     </body>    

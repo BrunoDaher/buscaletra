@@ -1,10 +1,8 @@
 .grid{        
     background-color:rgb(27, 27, 31);    
     position: relative;
-
-    height: fit-content;
+    height: inherit;    
     width: 45vw;
-
     display: grid;
     /*3 colunas
     grid-template-columns: 1fr 1fr 1fr;
@@ -19,7 +17,6 @@
     opacity: 1;    
     z-index: 3;
     }
-
 
   .grid > div:hover, .grid > div:focus{  
     color:rgb(228, 228, 228);
@@ -41,6 +38,7 @@
     cursor: pointer;
     font-size: medium;
   }
+
 
  
   .radius , .grid > div, .grid{
