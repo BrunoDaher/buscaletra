@@ -6,7 +6,6 @@ export class Aux{
        let frag = fetch(`frags/${id}.html`);
        frag.then((response) => response.text())
             .then((data) => { 
-                console.log(data)
             document.querySelector(container).innerHTML = data;
         });  
    }   
@@ -47,7 +46,6 @@ export class Aux{
        return obj;
    }
 
-
    criaComp(tipo,nomeClasse,id){       
        let obj = this.cria(tipo);
        id ? obj.id = id:"";
@@ -56,10 +54,13 @@ export class Aux{
    }
 
     criaCustom(custom){       
-       // console.log(custom)
+       
        let obj = this.cria(custom.tipo);
+       
        //custom.id ? obj.id = custom.id:"";
        obj.className = custom.nomeClasse;
+     
+        
        return obj;
    }
         
@@ -72,8 +73,9 @@ export class Aux{
         custom.arr.forEach(element => {
             custom.nomeClasse = custom.classe[cont];
             let div = this.criaCustom(custom)
-            div.append(element);
-            container.append(div);
+            div.append(element);            
+            container.append(div);            
+            container.addEventListener('click',custom.handle);
             cont++;
             
         });

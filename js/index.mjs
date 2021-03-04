@@ -54,19 +54,17 @@ function init (){
     letraContainer.addEventListener('scroll',swipper.calc,{passive: true});      
 }
 
-function playList (){
-    
+function playList (){    
     let lista = dao.getLocalJSON('lista');
     let toggleDiv = document.querySelector(this.getAttribute('toggle'));
-
     playItem.innerHTML = ''
 
-    Object.entries(lista).forEach(([key, item]) => {
-        //console.log(item)
+    Object.entries(lista).forEach(([key, item]) => {        
         let custom = {
             tipo:'div',          
             nomeClasse:'info',
-            id:item.chave,            
+            id:item.chave,
+            handle:getLetraLocal,
             arr:[item.nomeMus,item.nomeArt],
             classe:['subMus','subArt']                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
         }
@@ -90,79 +88,96 @@ function setFavorite(){
     dao.saveMus();  
 }
    
+function getLetraLocal(){
+    let storage = dao.getLocalMusicById();   
+
+    console.log(Object.keys(storage)[0]);
+     
+    let lista = storage[this.id];
+       
+    //atualiza footer
+    fotoArtista.src = lista.foto; 
+    letraContainer.innerHTML = lista.letraMus;
+        nomeMusica.innerText = lista.nomeMus;
+       nomeArtista.innerText = lista.nomeArt ;
+              inputMus.value = lista.nomeMus;
+              listaDados.innerHTML = '';
+}
+
 function getMus() {
-    listaDados.innerHTML=''
-    let localMusic = apiVagalume.getMusLocal(this.value);
-    //itera lista
-    localMusic.forEach(dado => {
-        //valida
-        //if(dado.desc.includes(this.value) || dado.band == this.value){ 
+    listaDados.innerHTML='' 
+    let localMusic = apiVagalume.getMusLocal(this.value);    
+    localMusic.forEach(dado => {        
             let div = aux.cria('div');
             div.addEventListener('click',test); 
             div.id = dado.id;
             div.append(dado.desc);    
-           listaDados.append(div);
-        //}   
+           listaDados.append(div);        
     });
 
     function test(){
-        getLetra(this.id);
+        getLetraById(this.id);
     }
 }
 
-function getLetra(busca) {  
+function getLetraById(busca) {  
        let letra = apiVagalume.getMusicById(busca);    
           letra.then((response) => response.json())
                .then((data) => {                           
-                aux.addClass('#letra','active');  
-                updateInfo(apiVagalume.modelMusica(data));
-                                 
+                aux.addClass('#letra','active');                             
+                //updateInfo(apiVagalume.modelMusica(data));
+                dao.saveTemp(updateInfo(apiVagalume.modelMusica(data)));
     });    
 }
 
 function getArt() {
     let art = apiVagalume.getArt(this.value);    
        art.then((response) => response.json())
-            .then((data) => {                
-             autoComp(data.response.docs,this);
-             console.log(apiVagalume.getFoto(this.value))
+            .then((data) => {      
+                console.log(data)          
+             autoComp(data.response.docs);  
+            // apiVagalume.getFoto(this.value);
  });    
 }
 
-function autoComp(art, input){
+function autoComp(art){
     listaDados.innerHTML =''
-    art.forEach(dado => {    
-        //let val = apiVagalume.normalizeInput(input.value);       
-        //if(dado.band.includes(val) || dado.band == this.value){
-            const div = aux.cria('div');  
-            //div.className = `${input.placeholder}List`; 
-            div.addEventListener('click',listArt); 
-            div.append(dado.band);    
-            listaDados.append(div);
-        //}
+    art.forEach(dado => {   
+        const div = aux.cria('div');      
+        div.addEventListener('click',selectArt); 
+        div.append(dado.band);    
+        listaDados.append(div);
     }); 
+}
+
+
+function uptadeLetra(){
+ 
 }
 
 //reuso
 //on navigate - update
 function updateInfo(lista){
-    dismissModal(containerPesquisa);
-    let foto = fotoArtista.id;
+    
+    dismissModal(containerPesquisa);    
+    
+    //quando está gravando
+    lista.foto = fotoArtista.id;    
+    fotoArtista.src = lista.foto;       
      
     //atualiza footer
-     fotoArtista.src = foto;
     letraContainer.innerHTML = lista.letraMus;
         nomeMusica.innerText = lista.nomeMus;
        nomeArtista.innerText = lista.nomeArt ;
               inputMus.value = lista.nomeMus;
               listaDados.innerHTML = '';
     
-    lista.foto = foto;
+    return lista;
 
-    dao.saveTemp(lista);
+    
 }
 
- function listArt(){     
+ function selectArt(){     
    // nomeArtista.innerText = this.innerHTML ;
     let artEscolhido = this.value ? this.value : inputArt.value = this.innerHTML;    
     apiVagalume.getArtInfo(artEscolhido); 

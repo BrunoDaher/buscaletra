@@ -41,11 +41,20 @@ export class Dao{
   this.saveLocalJSON('temp',lista);
  }
 
+ getListaJSON(){
+   return this.getLocalJSON('lista') ? this.getLocalJSON('lista'):false;
+ }
+
+ getLocalMusicById(){
+   let lista = this.getListaJSON();
+   return lista;
+ }
+
  saveMus(){    
      let temp = this.getLocalJSON('temp');    
      let isLocal = this.getLocalJSON('lista');  
     //premissas
-     let lista = this.getLocalJSON('lista');
+     let lista = this.getLocalJSON('lista')?this.getLocalJSON('lista'):new Object();
      //sobreescreve
      lista[temp.chave] = temp;      
      this.saveLocalJSON('lista',lista);           

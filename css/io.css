@@ -1,6 +1,5 @@
 button:hover{              
-    cursor: pointer;  
-    border:none;
+    cursor: pointer;      
     outline: none;
     color:white;
     background-color: #1e90ff;
@@ -25,8 +24,11 @@ button:hover{
  }
 
 button{
-    background:#545f77;  
-    border:none;
+    color:white;
+    background:#17367900;  
+    border:#1e90ff;
+    border-style: inset;    
+    border-width: 1px;
     border-radius:7px;      
     transition: background-color 0.3s; 
 }

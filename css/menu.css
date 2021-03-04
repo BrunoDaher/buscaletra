@@ -1,6 +1,3 @@
-
-@import url("io.css");
-
 .menu li , legend {
     padding: 2px 10px;    
     display: inline-block;    
@@ -8,7 +5,6 @@
     border-radius:7px;  
     text-decoration: none;     
   }
-
 
    .subArt{
     color: rgb(35, 176, 211);
@@ -65,7 +61,7 @@
   .box{
     gap: 1em;
     padding: 10px;
-    display: grid;  
+  
     color:white;
     margin:2vw;
     height: 69.5vh;
@@ -76,7 +72,8 @@
    
   #playlistItem{
     display: grid;
-    gap: 2vh;
+    gap: 1em;
+    
    }
 
   .playlist{     

@@ -48,6 +48,7 @@ export class ApiVagalume {
     }
 
     modelMusica(data){
+        //console.log(data)
         let id = data.mus[0].id
         let letraMus =data.mus[0].text
         let nomeMus = data.mus[0].name

@@ -2,15 +2,11 @@
 <html lang="pt" contenteditable="false">
     <head>
       <meta charset="UTF-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">    
       <title>BUSCA LETRA</title>
-      <link rel="stylesheet" href="css/menu.css">
-        <link rel="stylesheet" href="css/tema.css">        
-        <link rel="stylesheet" href="css/grid.css">                        
+        <link rel="stylesheet" href="css/tema.css">                
     </head>    
 
-    
-    
     <body class="bodyGrid">
       <header class="temaBlack">
         <div id='menu' class='menu' _target='header'>    
@@ -23,24 +19,22 @@
           <button id='favorite' class="" toggle='.playlist'>
             Fav
           </button>          
-          <input type='button' id='btnPlaylist' toggle='.playlist' value='Playlist'>
+          <button id='btnPlaylist' toggle='.playlist'>Playlist</button>
         </div>               
       </div>       
       </header>       
-
+      
       <section id='pesquisa' class="container">
-            <div class="pesquisa">    
-              <input id='buscaArtista' _listaTarget ='#listaDados' type='text' placeholder="Artista" autocomplete="off">
-              <input id='buscaMusica' _listTarget ='#listaDados' type='text' placeholder="Musica" disabled='true'> 
-      </div>
-            
-          
-            <div id='listaDados' class="listas"></div>
-
-      </section>
+        <div class="pesquisa">    
+          <input id='buscaArtista' _listaTarget ='#listaDados' type='text' placeholder="Artista" autocomplete="off">
+          <input id='buscaMusica' _listTarget ='#listaDados' type='text' placeholder="Musica" disabled='true'> 
+        </div>
+        <div id='listaDados' class="listas"></div>
+      
+    </section>
         
     <div id='playlist' class='playlist'>
-      <input class="temaBlack" placeholder="Lista de músicas"></input>
+      <legend class="">Lista de músicas</legend>
       <div class="info box">
       <div id="playlistItem"></div>
       </div>
