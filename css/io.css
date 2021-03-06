@@ -6,7 +6,7 @@ button:hover, button.active{
     transition: background-color 0.3s;
 }
 
-#playlistItem>div:focus, #playlistItem>div:hover{
+#playlistItem>div:focus, #playlistItem>div:hover  {
   cursor: pointer;
   outline: none;
   font-size: 1.2em;  
