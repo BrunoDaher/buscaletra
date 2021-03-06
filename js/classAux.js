@@ -37,6 +37,8 @@ export class Aux{
         document.querySelector(div).classList.toggle(nomeClasse);
     }
 
+    
+
     selfClean(){
         this.value='';
     }

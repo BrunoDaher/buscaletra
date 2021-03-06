@@ -83,7 +83,8 @@ function dismissModal(container){
     container.classList.remove('active')
 }
 
-function showSearchBar(){
+function showSearchBar(){    
+    //this.classList.toggle('active');
     containerPesquisa.classList.toggle('active'); 
     dismissModal(containerPlaylist); 
 } 
