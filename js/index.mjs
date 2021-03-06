@@ -56,23 +56,27 @@ function init (){
 
 function playList (){    
     let lista = dao.getLocalJSON('lista');
+ 
+    
     let toggleDiv = document.querySelector(this.getAttribute('toggle'));
     playItem.innerHTML = ''
 
-    Object.entries(lista).forEach(([key, item]) => {        
-        let custom = {
-            tipo:'div',          
-            nomeClasse:'info',
-            id:item.chave,
-            handle:getLetraLocal,
-            arr:[item.nomeMus,item.nomeArt],
-            classe:['subMus','subArt']                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
-        }
-       playItem.append(aux.arrayToList(custom));
-    });
-
+    if(lista){
+        Object.entries(lista).forEach(([key, item]) => {        
+            let custom = {
+                tipo:'div',          
+                nomeClasse:'info',
+                id:item.chave,
+                handle:getLetraLocal,
+                arr:[item.nomeMus,item.nomeArt],
+                classe:['subMus','subArt']                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
+            }
+        playItem.append(aux.arrayToList(custom));
+        });
+    }
     toggleDiv.classList.toggle('active');
     dismissModal(containerPesquisa);
+  
  }
 
 function dismissModal(container){
@@ -159,7 +163,7 @@ function uptadeLetra(){
 //on navigate - update
 function updateInfo(lista){
     
-    dismissModal(containerPesquisa);    
+    //dismissModal(containerPesquisa);    
     
     //quando está gravando
     lista.foto = fotoArtista.id;    

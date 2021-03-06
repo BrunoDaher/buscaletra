@@ -14,7 +14,7 @@ export class Dao{
    }
 
   getLocalJSON(id){
-    return JSON.parse(this.getLocal(id));
+    return this.getLocal(id)? JSON.parse(this.getLocal(id)):false;
    }  
 
    //save

@@ -17,42 +17,43 @@
             <div></div>
           </button>
           <button id='favorite' class="" toggle='.playlist'>
-            Fav
+            Salvar
           </button>          
           <button id='btnPlaylist' toggle='.playlist'>Playlist</button>
         </div>               
       </div>       
       </header>       
-      
-      <section id='pesquisa' class="container">
-        <div class="pesquisa">    
-          <input id='buscaArtista' _listaTarget ='#listaDados' type='text' placeholder="Artista" autocomplete="off">
-          <input id='buscaMusica' _listTarget ='#listaDados' type='text' placeholder="Musica" disabled='true'> 
-        </div>
-        <div id='listaDados' class="listas"></div>
-      
-    </section>
+
+      <main>
         
-    <div id='playlist' class='playlist'>
-      <legend class="">Lista de músicas</legend>
-      <div class="info box">
-      <div id="playlistItem"></div>
-      </div>
-    </div>
+        <section id='pesquisa' class="container">
+          <div class="pesquisa">    
+            <input id='buscaArtista' _listaTarget ='#listaDados' type='text' placeholder="Artista" autocomplete="off">
+            <input id='buscaMusica' _listTarget ='#listaDados' type='text' placeholder="Musica" disabled='true'> 
+          </div>
+          <div id='listaDados' class="listas"></div>
+        </section>
+        
+        <section id='playlist' class='playlist'>
+          <legend class="">Lista de músicas</legend>
+          <div class="info box">
+          <div id="playlistItem" class="box"></div>
+          </div>
+        </section>    
 
-    <main>
-        <pre id='letra' class=""></pre>
+        <section class="letras">
+          <pre id='letra' ></pre>
+        </section>
+
     </main>
-      
-      <footer class="temaBlack">
-        <div id="info">
-          <div id="nomeMusica" class="subMus">Musica</div>    
-          <div id="nomeArtista" class="subArt">Artista</div>    
-        </div>
-        <img id = 'fotoArtista' src='' >         
-      </footer>
-      
-      <script type='module' src="js/index.mjs"></script>                
-
-    </body>    
+     
+    <footer class="temaBlack">
+          <div id="info">
+            <div id="nomeMusica" class="subMus">Musica</div>    
+            <div id="nomeArtista" class="subArt">Artista</div>    
+          </div>
+          <img id = 'fotoArtista' src='' >         
+    </footer>
+  <script type='module' src="js/index.mjs"></script>              
+  </body>    
 </html>

@@ -8,13 +8,19 @@
 }
 
 ::-webkit-scrollbar-thumb {
-    background: rgba(90, 90, 90);
+    background: rgb(44, 94, 155);
 }
 
 ::-webkit-scrollbar-track {
     background: rgba(0, 0, 0, 0.2);
 }
 
+html,body{
+    padding: 0;
+    margin: 0;
+    height:100%;
+    width:100%;
+}
   
 fieldset > form {
     display: grid !important;
@@ -26,8 +32,8 @@ fieldset > form {
 
 legend{
     text-transform: uppercase;
-    padding:0.4em;
-    margin: 0.9em auto;
+    
+    margin: 1em auto;
     border-radius:4px;
     font-size: 1em;
 }
@@ -60,24 +66,22 @@ main a:hover, a:focus{
 }
 
 header{
-    /* position: fixed; */
-   /* top: 0; */
-   /* left: 0; */
-   /* width: 100%; */
-   z-index: 1;
-   margin: -8px;
-   padding: 0em;
+    top: 0;
+    left: 0;
+    position: fixed;
+    width: 100%;
+    z-index:10;
+    font-size: 3vh;
 }
 
 main{
+    top:4em;
     position: relative;
-    top: 1em;
-    /* display: contents; */
-    max-height: 79vh;
-    overflow-y: scroll;
-    text-align: center;
 }
 
+main > section{
+    z-index: -10;
+}
 
 footer{
     position: fixed;

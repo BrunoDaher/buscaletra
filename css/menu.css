@@ -59,36 +59,29 @@
   }
 
   .box{
+    color: white;
+    margin: 3vw;
+    display: grid;
     gap: 1em;
-    padding: 10px;
-  
-    color:white;
-    margin:2vw;
-    height: 69.5vh;
-    max-height: 69.5vh;
+    max-height: 64vh;    
     overflow-y: auto;
   }
-
    
   #playlistItem{
     display: grid;
     gap: 1em;
-    
    }
 
-  .playlist{     
-    position: fixed;
-    top: 10vh;
-    z-index: -1;
+  .playlist{ 
+    font-size:3vh;    
+    position: fixed;        
     left: 0;
     width: 100%;
     color:white;
-    background: #000000d1;
-  
+    background: #060910ed;    
     opacity: 0;
-  
-
-    transition: all 0.3s;
+    height: 100%;
+    transition: opacity 0.3s; 
   }
 
   .active{
