@@ -80,8 +80,9 @@ header{
 }
 
 main{
-    top:4em;
+    padding-top: 4em;
     position: relative;
+    padding-bottom: 4em;
 }
 
 main > section{
