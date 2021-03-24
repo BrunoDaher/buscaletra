@@ -45,18 +45,17 @@ export class Dao{
    return this.getLocalJSON('lista') ? this.getLocalJSON('lista'):false;
  }
 
- getLocalMusicById(){
-   let lista = this.getListaJSON();
+ getLocalMusicById(id){
+   let lista = this.getListaJSON()[id];
    return lista;
  }
 
  saveMus(){    
      let temp = this.getLocalJSON('temp');    
-     let isLocal = this.getLocalJSON('lista');  
     //premissas
-     let lista = this.getLocalJSON('lista')?this.getLocalJSON('lista'):new Object();
+     let lista = this.getLocalJSON('lista') ? this.getLocalJSON('lista'):new Object();
      //sobreescreve
-     lista[temp.chave] = temp;      
+     lista[temp.id] = temp;      
      this.saveLocalJSON('lista',lista);           
   }
 
@@ -71,8 +70,5 @@ export class Dao{
   }
   
 }
-
-
-
 
 export default Dao;

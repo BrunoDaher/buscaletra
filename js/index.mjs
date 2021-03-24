@@ -9,13 +9,12 @@ const aux = new Aux();
 
 //componentes
     //Header
-        const favButton = document.querySelector('#favorite');
-            favButton.addEventListener('click',setFavorite)
+    const favButton = document.querySelector('#favorite');
+        favButton.addEventListener('click',setFavorite)
         const btnShow = document.querySelector('#showPesq');
     
     //pesquisa
     const containerPesquisa = document.querySelector('#pesquisa');
-
         const inputArt = document.getElementById('buscaArtista');   
             inputArt.addEventListener('input',getArt);
             inputArt.addEventListener('click',aux.selfClean );
@@ -28,52 +27,80 @@ const aux = new Aux();
 
     //playlist
     const containerPlaylist = document.querySelector('#playlist');
-
-        const playItem = document.querySelector("#playlistItem");  
-        const btnPlaylist = document.querySelector('#btnPlaylist');
-       
+             const playItem = document.querySelector("#playlistItem");  
+          const btnPlaylist = document.querySelector('#btnPlaylist');
 
     //letra
-        const letraContainer = document.querySelector('#letra');   
+        const letraContent = document.querySelector('#letra');   
 
     //elementos do Footer
         const nomeArtista = document.querySelector('#nomeArtista');
         const nomeMusica = document.querySelector('#nomeMusica');
         const fotoArtista = document.querySelector('#fotoArtista');
+        const swipper = aux.swippe;
 
-init();
+ init();
 
 function init (){
    
     btnShow.addEventListener('click',showSearchBar);    
-    btnPlaylist.addEventListener('click',playList);
-    let swipper = aux.swippe;
+    btnPlaylist.addEventListener('click',playList); 
+
+    let letraContainer = document.querySelector('#letraContainer');
     
-    letraContainer.addEventListener('touchstart',swipper.calc,{passive: true});    
-    letraContainer.addEventListener('touchend',swipper.calc,{passive: true});    
-    letraContainer.addEventListener('scroll',swipper.calc,{passive: true});      
+    letraContainer.addEventListener('touchstart',toutch,{passive: true});    
+    letraContainer.addEventListener('touchend',toutch,{passive: true});    
+    letraContainer.addEventListener('scroll',toutch,{passive: true});      
+}
+
+function toutch(e){    
+    //console.log(e.target.id)   
+    function next(sentido){
+        
+        let idLetra = document.getElementById('letra').getAttribute('idLetra');        
+        let lista = Object.keys(dao.getLocalJSON('lista'));
+        let pos = lista.indexOf(idLetra);
+      
+         let doc = {
+            pos:pos,
+            prox:pos+1,
+            max:lista.length
+         }         
+
+         pos = pos + sentido;
+         doc.pos = pos;
+
+         if(doc.pos < doc.max && doc.pos >= 0){                          
+            getLetraLocal(lista[doc.pos]);          
+         }
+         
+         console.log(0 + "-> " + doc.pos + " -> "+ doc.max )
+    }
+
+    swipper.calc(e,next);
 }
 
 function playList (){    
     let lista = dao.getLocalJSON('lista');
- 
     
     let toggleDiv = document.querySelector(this.getAttribute('toggle'));
     playItem.innerHTML = ''
+
 
     if(lista){
         Object.entries(lista).forEach(([key, item]) => {        
             let custom = {
                 tipo:'div',          
                 nomeClasse:'info',
-                id:item.chave,
-                handle:getLetraLocal,
+                id:item.id,
+                handle:()=>{getLetraLocal(item.id)},
                 arr:[item.nomeMus,item.nomeArt],
                 classe:['subMus','subArt']                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
             }
         playItem.append(aux.arrayToList(custom));
         });
     }
+
     toggleDiv.classList.toggle('active');
     dismissModal(containerPesquisa);
   
@@ -93,22 +120,6 @@ function setFavorite(){
     dao.saveMus();  
 }
    
-function getLetraLocal(){
-    let storage = dao.getLocalMusicById();   
-
-    console.log(Object.keys(storage)[0]);
-     
-    let lista = storage[this.id];
-       
-    //atualiza footer
-    fotoArtista.src = lista.foto; 
-    letraContainer.innerHTML = lista.letraMus;
-        nomeMusica.innerText = lista.nomeMus;
-       nomeArtista.innerText = lista.nomeArt ;
-              inputMus.value = lista.nomeMus;
-              listaDados.innerHTML = '';
-}
-
 function getMus() {
     listaDados.innerHTML='' 
     let localMusic = apiVagalume.getMusLocal(this.value);    
@@ -126,27 +137,26 @@ function getMus() {
 }
 
 function getLetraById(busca) {  
-       let letra = apiVagalume.getMusicById(busca);    
-          letra.then((response) => response.json())
-               .then((data) => {                           
-                aux.addClass('#letra','active');                             
-                //updateInfo(apiVagalume.modelMusica(data));
-                dao.saveTemp(updateInfo(apiVagalume.modelMusica(data)));
+    let letra = apiVagalume.getMusicById(busca);    
+        letra.then((response) => response.json())
+            .then((data) => {                           
+            aux.addClass('#letra','active');                             
+            //updateInfo(apiVagalume.modelMusica(data));
+            let lista = updateInfo(apiVagalume.modelMusica(data));
+            dao.saveTemp(lista);
     });    
 }
 
 function getArt() {
     let art = apiVagalume.getArt(this.value);    
-       art.then((response) => response.json())
-            .then((data) => {      
-                console.log(data)          
-             autoComp(data.response.docs);  
-            // apiVagalume.getFoto(this.value);
- });    
+        art.then((response) => response.json())
+            .then((data) => {                              
+            autoComp(data.response.docs);    
+        });    
 }
 
 function autoComp(art){
-    listaDados.innerHTML =''
+    listaDados.innerHTML ='';    
     art.forEach(dado => {   
         const div = aux.cria('div');      
         div.addEventListener('click',selectArt); 
@@ -155,31 +165,28 @@ function autoComp(art){
     }); 
 }
 
-
-function uptadeLetra(){
- 
-}
-
 //reuso
 //on navigate - update
-function updateInfo(lista){
-    
-    //dismissModal(containerPesquisa);    
-    
-    //quando está gravando
+function updateInfo(lista){ 
     lista.foto = fotoArtista.id;    
-    fotoArtista.src = lista.foto;       
-     
-    //atualiza footer
-    letraContainer.innerHTML = lista.letraMus;
+    fotoArtista.src = lista.foto;
+     attFooter(lista);
+    //setTimeout(()=>{dismissModal(containerPesquisa)},400);    
+    return lista;
+}
+
+function getLetraLocal(id){     
+    console.log(id)
+     attFooter(dao.getLocalMusicById(id));
+}
+function attFooter(lista){
+    fotoArtista.src = lista.foto; 
+    letraContent.innerHTML = lista.letraMus;
+    letraContent.setAttribute('idLetra',lista.id);
         nomeMusica.innerText = lista.nomeMus;
        nomeArtista.innerText = lista.nomeArt ;
               inputMus.value = lista.nomeMus;
               listaDados.innerHTML = '';
-    
-    return lista;
-
-    
 }
 
  function selectArt(){     

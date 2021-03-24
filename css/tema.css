@@ -2,17 +2,18 @@
 @import url("io.css");
 @import url("menu.css");
 
+/*scroll*/
 ::-webkit-scrollbar {
-    width: 0px;
+    width: 2px;
     height: 10px;
 }
 
 ::-webkit-scrollbar-thumb {
-    background: rgb(44, 94, 155);
+    background: rgb(62, 138, 182);
 }
 
 ::-webkit-scrollbar-track {
-    background: rgba(194, 58, 58, 0.911);
+    background: rgba(31, 27, 27, 0.911);
 }
 
 .over-y{

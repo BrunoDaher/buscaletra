@@ -1,7 +1,5 @@
 
-export class Aux{
-    
-
+export class Aux{    
    build(container,id){
        let frag = fetch(`frags/${id}.html`);
        frag.then((response) => response.text())
@@ -109,12 +107,9 @@ export class Aux{
         yfinal : 0,
         mov : false,
       
-        calc (e){
+        calc (e,handler){
             this.mov = !this.mov;
-            let scrollY;
-          //  console.log(e.type);
-          
-              
+            let scrollY;            
                 if(e.type == 'touchstart'){                    
                     this.xfinal=0;            
                     this.y = e.changedTouches[0].clientY;
@@ -123,16 +118,15 @@ export class Aux{
                 else if(e.type == 'touchend'){
                     this.yfinal = e.changedTouches[0].clientY;
                     this. xfinal = e.changedTouches[0].clientX;          
-                    let dif  = parseFloat( this.yfinal) - parseFloat( this.y);
-                    dif = Math.abs(dif);
-                    scrollY = (dif < 40?true:false );
-                  //  console.log(scrollY + " -> " + dif)
-          
-                   // if(scrollY && dif > 120)
+                    let deltaY  = parseFloat( this.yfinal) - parseFloat( this.y);
+                    deltaY = Math.abs(deltaY);                                        
+                    scrollY = deltaY < 40 ? true:false;
                     if(scrollY){
-                       // navigateSet( this.x >  this.xfinal ? 1:-1);  
-                       console.log(this.x >  this.xfinal ? 1:-1)           
-                    }
+                    handler(this.x >  this.xfinal ? 1:-1);                                  
+                      // console.log(this.x >  this.xfinal ? 1:-1)           
+                    } 
+
+                    return scrollY;
                 }
           }
         

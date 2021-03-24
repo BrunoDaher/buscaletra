@@ -47,8 +47,14 @@ export class ApiVagalume {
         return fetch(path);  
     }
 
-    modelMusica(data){
-        //console.log(data)
+    getArtSync(art){        
+        art = this.normalizeInput(art);      
+        let path = `${url}/search.art?${this.apiKey}&q=${art}%20&limit=10`;      
+        return fetch(path);  
+    }
+    
+
+    modelMusica(data){        
         let id = data.mus[0].id
         let letraMus =data.mus[0].text
         let nomeMus = data.mus[0].name

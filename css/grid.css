@@ -38,8 +38,6 @@
     cursor: pointer;
     font-size: medium;
   }
-
-
  
   .radius , .grid > div, .grid{
     border-style:inset;

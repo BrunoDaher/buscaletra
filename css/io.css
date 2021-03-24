@@ -22,7 +22,8 @@ button, input{
 button{
   font-size: 3vh;
     color:white;
-    background:#17367900;      
+    background:#17367900;     
+    border-color: #1b1b1bc4; 
     border-style:invert;  
     border-width: 1px;
     border-radius:7px;      
@@ -38,7 +39,6 @@ button{
     border-radius:4px;    
     padding: 0;
 }
-
   
 pre{
   opacity: 0;
@@ -65,16 +65,14 @@ pre{
   background: #000000d1;  
 }
 
-
 .pesquisa{
   display: flex;
   width: 100%;
-  background-color: black;
+  background-color: #2e2e2e;
 }
 
 #pesquisa{
-  position:fixed;
-  
+  position:fixed;    
 }
 
 .container
@@ -90,7 +88,6 @@ pre{
   z-index: 10;           
   transition: opacity 0.4s;
 }
-
 
 .pesquisa > input, input:disabled{ 
    font-size: 3em;  
