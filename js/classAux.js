@@ -143,7 +143,7 @@ export class Aux{
       
         calc (e,handler){
             this.mov = !this.mov;
-            let scrollY;            
+            let scrollYmin;            
                 if(e.type == 'touchstart'){                    
                     this.xfinal=0;            
                     this.y = e.changedTouches[0].clientY;
@@ -154,9 +154,10 @@ export class Aux{
                     this. xfinal = e.changedTouches[0].clientX;          
                     let deltaY  = parseFloat( this.yfinal) - parseFloat( this.y);                             
                     let deltaX = Math.abs(parseFloat( this.xfinal) - parseFloat( this.x));                               
-                    //scrollY = deltaY < 10 ? true:false;
-                console.log('y'+deltaY + " x" + deltaX)
-                    if(deltaY < 10 && deltaX > 0){
+                    scrollYmin = (deltaY < 10 && deltaY > -10) ? true:false;
+             /*            console.log('y'+deltaY + " x" + deltaX)
+                        console.log(scrollY) */
+                    if(scrollYmin && deltaX > 0){
                     
                     handler(this.x >  this.xfinal ? 1:-1);                                  
                       // console.log(this.x >  this.xfinal ? 1:-1)           
