@@ -89,6 +89,8 @@ export class Aux{
             let xFinal;
             let event = (e)=>{
 
+
+                console.log(e.type)
                 turn = e.type=='touchstart' ? true:false;            
                 if(turn){
                     x = e.changedTouches[0].clientX;
@@ -101,7 +103,11 @@ export class Aux{
                    xFinal = 0;
                 }                
             }
-           
+            
+            //pc
+            container.addEventListener('click',()=>{custom.handle[0]()},{passive: true});    
+          
+            //mobile
             container.addEventListener('touchstart',event,{passive: true});                
             container.addEventListener('touchend',event,{passive: true});                       
             cont++;
@@ -148,8 +154,9 @@ export class Aux{
                     this. xfinal = e.changedTouches[0].clientX;          
                     let deltaY  = parseFloat( this.yfinal) - parseFloat( this.y);                             
                     let deltaX = Math.abs(parseFloat( this.xfinal) - parseFloat( this.x));                               
-                    scrollY = deltaY < 40 ? true:false;
-                    if(scrollY && deltaX > 0){
+                    //scrollY = deltaY < 10 ? true:false;
+                console.log('y'+deltaY + " x" + deltaX)
+                    if(deltaY == 0 && deltaX > 0){
                     
                     handler(this.x >  this.xfinal ? 1:-1);                                  
                       // console.log(this.x >  this.xfinal ? 1:-1)           

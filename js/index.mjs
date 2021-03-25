@@ -184,17 +184,17 @@ function autoComp(art){
 function updateInfo(lista){ 
     lista.foto = fotoArtista.id;    
     fotoArtista.src = lista.foto;
-     attFooter(lista);
+     attLetra(lista);
     //setTimeout(()=>{dismissModal(containerPesquisa)},400);    
     return lista;
 }
 
-function getLetraLocal(id){     
-    
-     attFooter(dao.getLocalMusicById(id));
+function getLetraLocal(id){ 
+            
+     attLetra(dao.getLocalMusicById(id));
 }
 
-function attFooter(lista){
+function attLetra(lista){
     fotoArtista.src = lista.foto; 
    
     letraContent.innerHTML='';
