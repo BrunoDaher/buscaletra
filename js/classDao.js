@@ -59,6 +59,14 @@ export class Dao{
      this.saveLocalJSON('lista',lista);           
   }
 
+  delMus(id){
+    let lista = this.getLocalJSON('lista') ? this.getLocalJSON('lista'):new Object();
+    //sobreescreve
+    delete lista[id];  
+    console.log(lista)    
+    this.saveLocalJSON('lista',lista);  
+  }
+
   normalize(str){
     str = str.toLowerCase();
     str = str.replaceAll('.','');

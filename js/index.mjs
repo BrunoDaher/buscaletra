@@ -37,24 +37,23 @@ const aux = new Aux();
         const nomeArtista = document.querySelector('#nomeArtista');
         const nomeMusica = document.querySelector('#nomeMusica');
         const fotoArtista = document.querySelector('#fotoArtista');
-        const swipper = aux.swippe;
+        
 
  init();
 
-function init (){
-   
+function init (){   
     btnShow.addEventListener('click',showSearchBar);    
     btnPlaylist.addEventListener('click',playList); 
 
     let letraContainer = document.querySelector('#letraContainer');
     
-    letraContainer.addEventListener('touchstart',toutch,{passive: true});    
+   letraContainer.addEventListener('touchstart',toutch,{passive: true});    
     letraContainer.addEventListener('touchend',toutch,{passive: true});    
     letraContainer.addEventListener('scroll',toutch,{passive: true});      
 }
 
 function toutch(e){    
-    //console.log(e.target.id)   
+const swipper = aux.swippe;
     function next(sentido){
         
         let idLetra = document.getElementById('letra').getAttribute('idLetra');        
@@ -74,30 +73,41 @@ function toutch(e){
             getLetraLocal(lista[doc.pos]);          
          }
          
-         console.log(0 + "-> " + doc.pos + " -> "+ doc.max )
+        //console.log(0 + "-> " + doc.pos + " -> "+ doc.max )
     }
 
     swipper.calc(e,next);
 }
 
-function playList (){    
+function playList (e){    
     let lista = dao.getLocalJSON('lista');
+
     
     let toggleDiv = document.querySelector(this.getAttribute('toggle'));
     playItem.innerHTML = ''
 
-
+    let del = (id)=>{
+        console.log(id)
+        //tempo em milisegundos
+        aux.remove(id,250);
+        dao.delMus(id);
+    }
+  
     if(lista){
-        Object.entries(lista).forEach(([key, item]) => {        
+        Object.entries(lista).forEach(([key, item]) => {       
+         
             let custom = {
                 tipo:'div',          
-                nomeClasse:'info',
-                id:item.id,
-                handle:()=>{getLetraLocal(item.id)},
+                nomeClasse:'info',                
+                id:item.id,                
+                handle:[()=>{getLetraLocal(item.id)},()=>{del(item.id)}],               
                 arr:[item.nomeMus,item.nomeArt],
-                classe:['subMus','subArt']                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
+                classes:['subMus','subArt']                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
             }
-        playItem.append(aux.arrayToList(custom));
+
+            
+            playItem.append(aux.arrayToList(custom));
+
         });
     }
 
@@ -107,7 +117,11 @@ function playList (){
  }
 
 function dismissModal(container){
-    container.classList.remove('active')
+    container.classList.remove('active');
+}
+
+function excludeDiv(){
+    
 }
 
 function showSearchBar(){    
@@ -136,6 +150,8 @@ function getMus() {
     }
 }
 
+
+
 function getLetraById(busca) {  
     let letra = apiVagalume.getMusicById(busca);    
         letra.then((response) => response.json())
@@ -146,6 +162,7 @@ function getLetraById(busca) {
             dao.saveTemp(lista);
     });    
 }
+
 
 function getArt() {
     let art = apiVagalume.getArt(this.value);    
@@ -176,12 +193,16 @@ function updateInfo(lista){
 }
 
 function getLetraLocal(id){     
-    console.log(id)
+    
      attFooter(dao.getLocalMusicById(id));
 }
+
 function attFooter(lista){
     fotoArtista.src = lista.foto; 
+   
+    letraContent.innerHTML='';
     letraContent.innerHTML = lista.letraMus;
+   
     letraContent.setAttribute('idLetra',lista.id);
         nomeMusica.innerText = lista.nomeMus;
        nomeArtista.innerText = lista.nomeArt ;

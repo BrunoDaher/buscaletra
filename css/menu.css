@@ -67,6 +67,14 @@
     overflow-y: auto;
   }
    
+  .exclui{
+    display: none;
+  }
+
+  .hide{
+    opacity: 0;
+    transition: 0.4s;
+  }
 
   .playlist{ 
     font-size:3vh;    

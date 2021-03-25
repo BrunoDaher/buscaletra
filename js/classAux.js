@@ -8,11 +8,11 @@ export class Aux{
         });  
    }   
 
-     menuShow(seletor,classe){
-        document.querySelector(seletor).addEventListener('click', event => {                        
-            this.toggle('.' + classe,'active');
-        });
-    }
+    menuShow(seletor,classe){
+    document.querySelector(seletor).addEventListener('click', event => {                        
+        this.toggle('.' + classe,'active');
+    });
+}
 
     menuClear(seletor){
         seletor.forEach(item => item.classList.remove('active'));
@@ -31,12 +31,18 @@ export class Aux{
         document.querySelector(seletor).classList.add(nomeClasse);        
     }
 
+    remove(id,tempo){
+        document.getElementById(id).classList.add('hide');
+         
+        setTimeout(()=>{
+            document.getElementById(id).classList.add('exclui')},
+        tempo);
+    }
+
     toggle(div,nomeClasse){              
         document.querySelector(div).classList.toggle(nomeClasse);
     }
-
     
-
     selfClean(){
         this.value='';
     }
@@ -63,19 +69,44 @@ export class Aux{
         
        return obj;
    }
+
+
+
         
     arrayToList(custom){
         let container = this.cria('div');
         container.id = custom.id;
+        container.className = custom.nomeClasse;
       
         let cont = 0;
         
         custom.arr.forEach(element => {
-            custom.nomeClasse = custom.classe[cont];
+            custom.nomeClasse = custom.classes[cont];
+            
             let div = this.criaCustom(custom)
             div.append(element);            
-            container.append(div);            
-            container.addEventListener('click',custom.handle);
+            container.append(div);   
+                       
+            let turn = false;
+            let x;
+            let xFinal;
+            let event = (e)=>{
+
+                turn = e.type=='touchstart' ? true:false;            
+                if(turn){
+                    x = e.changedTouches[0].clientX;
+                }            
+                else
+                {
+                  xFinal = e.changedTouches[0].clientX;
+                   custom.handle[xFinal > x ? 1:0] ();
+                   x = 0;
+                   xFinal = 0;
+                }                
+            }
+           
+            container.addEventListener('touchstart',event,{passive: true});                
+            container.addEventListener('touchend',event,{passive: true});                       
             cont++;
             
         });
@@ -118,10 +149,11 @@ export class Aux{
                 else if(e.type == 'touchend'){
                     this.yfinal = e.changedTouches[0].clientY;
                     this. xfinal = e.changedTouches[0].clientX;          
-                    let deltaY  = parseFloat( this.yfinal) - parseFloat( this.y);
-                    deltaY = Math.abs(deltaY);                                        
+                    let deltaY  = parseFloat( this.yfinal) - parseFloat( this.y);                             
+                    let deltaX = Math.abs(parseFloat( this.xfinal) - parseFloat( this.x));                               
                     scrollY = deltaY < 40 ? true:false;
-                    if(scrollY){
+                    if(scrollY && deltaX > 0){
+                    
                     handler(this.x >  this.xfinal ? 1:-1);                                  
                       // console.log(this.x >  this.xfinal ? 1:-1)           
                     } 
