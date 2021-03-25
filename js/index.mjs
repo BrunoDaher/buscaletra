@@ -89,7 +89,7 @@ function playList (e){
     let del = (id)=>{
         console.log(id)
         //tempo em milisegundos
-        aux.remove(id,250);
+        aux.remove(id,100);
         dao.delMus(id);
     }
   
@@ -104,7 +104,6 @@ function playList (e){
                 arr:[item.nomeMus,item.nomeArt],
                 classes:['subMus','subArt']                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
             }
-
             
             playItem.append(aux.arrayToList(custom));
 
@@ -120,9 +119,7 @@ function dismissModal(container){
     container.classList.remove('active');
 }
 
-function excludeDiv(){
-    
-}
+
 
 function showSearchBar(){    
     //this.classList.toggle('active');

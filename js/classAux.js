@@ -35,8 +35,8 @@ export class Aux{
         document.getElementById(id).classList.add('hide');
          
         setTimeout(()=>{
-            document.getElementById(id).classList.add('exclui')},
-        tempo);
+           document.getElementById(id).classList.add('exclui')
+        },tempo);
     }
 
     toggle(div,nomeClasse){              
@@ -70,9 +70,6 @@ export class Aux{
        return obj;
    }
 
-
-
-        
     arrayToList(custom){
         let container = this.cria('div');
         container.id = custom.id;
@@ -99,7 +96,7 @@ export class Aux{
                 else
                 {
                   xFinal = e.changedTouches[0].clientX;
-                   custom.handle[xFinal > x ? 1:0] ();
+                   custom.handle[xFinal > x + 40? 1:0] ();
                    x = 0;
                    xFinal = 0;
                 }                
