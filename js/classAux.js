@@ -156,7 +156,7 @@ export class Aux{
                     let deltaX = Math.abs(parseFloat( this.xfinal) - parseFloat( this.x));                               
                     //scrollY = deltaY < 10 ? true:false;
                 console.log('y'+deltaY + " x" + deltaX)
-                    if(deltaY == 0 && deltaX > 0){
+                    if(deltaY < 10 && deltaX > 0){
                     
                     handler(this.x >  this.xfinal ? 1:-1);                                  
                       // console.log(this.x >  this.xfinal ? 1:-1)           
