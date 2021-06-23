@@ -72,8 +72,12 @@ function setAlign(){
     //marca a desejada
     
     this.classList.toggle('active')    
+
+    console.log(this)
     
     document.querySelector('.letras').style.textAlign = this.id;
+
+    console.log(document.querySelector('.letras').style.textAlign)
 
    }
    
