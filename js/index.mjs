@@ -25,10 +25,9 @@ const aux = new Aux();
         
         const inputFonte = document.getElementById('fonte');
             inputFonte.addEventListener('change',setConfig);    
-         
-      //  const inputConfig = document.getElementById('setupConfig');
-     //           inputConfig.addEventListener('click',setupConfig);    
-
+    
+            const inputAlign = document.querySelectorAll('.align');
+            setAlign();
             
         const listaDados = document.querySelector('#listaDados');
 
@@ -60,9 +59,25 @@ function init (){
 }
 
 
-function setupConfig(){
-   aux.toggle("#config",'active');
+function setAlign(){
+   
+   inputAlign.forEach(input => {
+       input.addEventListener('click',setup);       
+   });
 
+   function setup(){
+       
+    //desmarca todos do grupo
+    aux.dismissClassGroup(inputAlign,'active');
+    //marca a desejada
+    
+    this.classList.toggle('active')    
+    
+    document.querySelector('.letras').style.textAlign = this.id;
+
+   }
+   
+   //inputAlign.addEventListener('click',setAlign);  
 }
 
 function setConfig(){

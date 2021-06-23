@@ -22,6 +22,12 @@ export class Aux{
         seletor.classList.remove(classe);            
     }
 
+    dismissClassGroup(seletor,classe){
+        seletor.forEach(elemento => {
+            elemento.classList.remove(classe);
+        });
+    }
+
     insertHtml = (div,el)=>{
         document.querySelector(div).innerHTML = el.innerHTML;
         return document.querySelector(div);

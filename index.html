@@ -9,35 +9,56 @@
 
     <body class="bodyGrid">
       <header class="temaBlack">
+        
         <div id='menu' class='menu' _target='header'>    
-          <div class="colapse temaBlack">                 
+          <div class="colapse temaBlack">    
+                         
             <button id='showPesq' class="bar" toggle='.container'>
               <div></div>
               <div></div>
               <div></div>
             </button>
+
+            <div id='alinhamento' class="flex">
+              <div class='bar mini align' id='leff'>
+                <div style="width: 10px;margin-left: 17px;"></div>
+                <div style="width: 14px;margin-left: 13px;"></div>
+                <div></div>
+              </div>
+              <div class='bar mini align' id='center'>
+                <div></div>
+                <div></div>
+                <div></div>
+              </div>
+              <div class='bar mini align' id='right'>
+                <div style="width: 10px;"></div>
+                <div style="width: 14px;"></div>
+                <div></div>
+              </div> 
+            </div>     
+
             <button id='favorite' class="" toggle='.playlist'>
               Salvar
             </button>          
             <button id='btnPlaylist' toggle='.playlist'>
               Playlist
             </button>
+            
           </div>               
        </div>       
       </header>       
 
       <main>        
 
-    
+
         
         <section id='pesquisa' class="container">
           <div  id='config' class="temaBlack config">
+                  
             <label for='fonte'>Fonte</label>
-            <input type="range" class="" id='fonte' step="0.1" min='1'  max="8" value="3"> 
+            <input type="range" class="" id='fonte' step="0.1" min='1'  max="8" value="3">
           </div>
           <div class="pesquisa">   
-                     
-           
             <input id='buscaArtista' _listaTarget ='#listaDados' type='text' placeholder="Artista" autocomplete="off">
             <input id='buscaMusica' _listTarget ='#listaDados' type='text' placeholder="Musica" disabled='true'> 
           </div>
