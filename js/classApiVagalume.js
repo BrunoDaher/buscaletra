@@ -28,6 +28,7 @@ export class ApiVagalume {
 
     getFoto(band){
         band = this.normalizeInput(band);
+        console.log(`${url}/${band}/images/profile.jpg`);
         return `${url}/${band}/images/profile.jpg`
     }
 

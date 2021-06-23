@@ -6,6 +6,21 @@
     text-decoration: none;     
   }
 
+  .config , .config{
+    display: grid;
+    padding: 10px;
+  }
+  
+  .config  label{
+    margin-left: 5px;
+    font-family: cursive;
+    
+  }
+
+  #fonte{
+  
+  }
+
    .subArt{
     color: rgb(35, 176, 211);
     font-size: 15px;
@@ -33,7 +48,7 @@
     padding: 7px;     
     z-index: 1;
   } 
-  
+    
   .menuItem:hover, .menuItem:focus,.listas > div:hover,input:hover, input:focus{
     color:247, 245, 245;
     font-style: italic;

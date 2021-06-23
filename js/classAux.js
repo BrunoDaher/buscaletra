@@ -90,7 +90,7 @@ export class Aux{
             let event = (e)=>{
 
 
-                console.log(e.type)
+               // console.log(e.type)
                 turn = e.type=='touchstart' ? true:false;            
                 if(turn){
                     x = e.changedTouches[0].clientX;
@@ -98,7 +98,7 @@ export class Aux{
                 else
                 {
                   xFinal = e.changedTouches[0].clientX;
-                   custom.handle[xFinal > x + 40? 1:0] ();
+                   custom.handle[xFinal > x + 20? 1:0] ();
                    x = 0;
                    xFinal = 0;
                 }                

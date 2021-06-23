@@ -22,6 +22,13 @@ const aux = new Aux();
         const inputMus = document.getElementById('buscaMusica');  
             inputMus.addEventListener('input',getMus);
             inputMus.addEventListener('click',aux.selfClean);
+        
+        const inputFonte = document.getElementById('fonte');
+            inputFonte.addEventListener('change',setConfig);    
+         
+      //  const inputConfig = document.getElementById('setupConfig');
+     //           inputConfig.addEventListener('click',setupConfig);    
+
             
         const listaDados = document.querySelector('#listaDados');
 
@@ -50,6 +57,21 @@ function init (){
    letraContainer.addEventListener('touchstart',toutch,{passive: true});    
     letraContainer.addEventListener('touchend',toutch,{passive: true});    
     letraContainer.addEventListener('scroll',toutch,{passive: true});      
+}
+
+
+function setupConfig(){
+   aux.toggle("#config",'active');
+
+}
+
+function setConfig(){
+    console.log(this)
+    console.log(inputFonte.value);
+    document.querySelector('.letras').style.fontSize = inputFonte.value + 'vh';
+    
+    //document.getElementById('fonte').value = inputFonte.value
+    ////let fontSize = inputFonte.getValue();
 }
 
 function toutch(e){    
@@ -87,7 +109,7 @@ function playList (e){
     playItem.innerHTML = ''
 
     let del = (id)=>{
-        console.log(id)
+        //console.log(id)
         //tempo em milisegundos
         aux.remove(id,100);
         dao.delMus(id);
@@ -119,8 +141,6 @@ function dismissModal(container){
     container.classList.remove('active');
 }
 
-
-
 function showSearchBar(){    
     //this.classList.toggle('active');
     containerPesquisa.classList.toggle('active'); 
@@ -129,6 +149,7 @@ function showSearchBar(){
 
 function setFavorite(){
     dao.saveMus();  
+    dismissModal(containerPesquisa);
 }
    
 function getMus() {
@@ -136,18 +157,18 @@ function getMus() {
     let localMusic = apiVagalume.getMusLocal(this.value);    
     localMusic.forEach(dado => {        
             let div = aux.cria('div');
-            div.addEventListener('click',test); 
+            div.onclick = getLetra; 
             div.id = dado.id;
             div.append(dado.desc);    
            listaDados.append(div);        
     });
 
-    function test(){
+    function getLetra(){
         getLetraById(this.id);
+        setTimeout(dismissModal(containerPesquisa),300);
+        console.log(1)
     }
 }
-
-
 
 function getLetraById(busca) {  
     let letra = apiVagalume.getMusicById(busca);    
@@ -173,7 +194,7 @@ function autoComp(art){
     listaDados.innerHTML ='';    
     art.forEach(dado => {   
         const div = aux.cria('div');      
-        div.addEventListener('click',selectArt); 
+        div.onclick =  selectArt; 
         div.append(dado.band);    
         listaDados.append(div);
     }); 
@@ -189,13 +210,18 @@ function updateInfo(lista){
     return lista;
 }
 
-function getLetraLocal(id){ 
-            
-     attLetra(dao.getLocalMusicById(id));
+function getLetraLocal(id){             
+     attLetra(dao.getLocalMusicById(id));    
+     setTimeout(dismissModal(containerPlaylist),1300); 
+}
+
+function configs(){
+
 }
 
 function attLetra(lista){
     fotoArtista.src = lista.foto; 
+    //lista.foto = lista.foto.replace('http://','https://');
    
     letraContent.innerHTML='';
     letraContent.innerHTML = lista.letraMus;
