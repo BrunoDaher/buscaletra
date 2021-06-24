@@ -30,6 +30,11 @@ const aux = new Aux();
             setAlign();
             
         const listaDados = document.querySelector('#listaDados');
+              listaDados.addEventListener('click',(e)=>{
+                  if(e.target.id == listaDados.id){
+                     btnShow.click();
+                  }
+                });
 
     //playlist
     const containerPlaylist = document.querySelector('#playlist');
@@ -42,8 +47,7 @@ const aux = new Aux();
     //elementos do Footer
         const nomeArtista = document.querySelector('#nomeArtista');
         const nomeMusica = document.querySelector('#nomeMusica');
-        const fotoArtista = document.querySelector('#fotoArtista');
-        
+        const fotoArtista = document.querySelector('#fotoArtista');       
 
  init();
 
