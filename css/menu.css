@@ -45,7 +45,7 @@
   }
   
   
-  .bar.mini:hover, .bar.mini:focus, .bar.mini.active {
+  .bar.mini:hover, .bar.mini:focus, .bar.mini.active , .coluna.active {
     background-color:#505050;;
     border-color:rgb(50, 50, 56);
     border-radius:4px;
@@ -160,5 +160,9 @@
       font-size: 2em;
       letter-spacing: 3px;
       line-height: 1em;
+    }
+
+    #colunas{
+      display: none;
     }
   }

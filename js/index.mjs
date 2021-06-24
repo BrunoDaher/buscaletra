@@ -24,11 +24,13 @@ const aux = new Aux();
             inputMus.addEventListener('click',aux.selfClean);
         
         const inputFonte = document.getElementById('fonte');
-            inputFonte.addEventListener('change',setConfig);    
+            inputFonte.addEventListener('change',fontConfig);    
     
-            const inputAlign = document.querySelectorAll('.align');
-            setAlign();
-            
+        const inputAlign = document.querySelectorAll('.align');
+        const inputColuna = document.querySelectorAll('.coluna');        
+        
+        setAlign();
+        
         const listaDados = document.querySelector('#listaDados');
               listaDados.addEventListener('click',(e)=>{
                   if(e.target.id == listaDados.id){
@@ -67,7 +69,16 @@ function setAlign(){
    
     inputAlign.forEach(input => {
        input.addEventListener('click',setup);       
-   });
+    });
+
+    inputColuna.forEach(input => {
+       input.addEventListener('click',
+       function (){
+        aux.dismissClassGroup(inputColuna,'active');
+        this.classList.toggle('active');   
+        document.querySelector('.letras').style.columnCount = this.id;   
+       });       
+     });
 
     function setup(){       
         //desmarca todos do grupo
@@ -81,7 +92,7 @@ function setAlign(){
       //inputAlign.addEventListener('click',setAlign);  
 }
 
-function setConfig(){    
+function fontConfig(){    
     document.querySelector('.letras').style.fontSize = inputFonte.value + 'vh';    
     //document.getElementById('fonte').value = inputFonte.value
     ////let fontSize = inputFonte.getValue();
