@@ -59,36 +59,26 @@ function init (){
 }
 
 
-function setAlign(){
+function setAlign(){   
    
-   inputAlign.forEach(input => {
+    inputAlign.forEach(input => {
        input.addEventListener('click',setup);       
    });
 
-   function setup(){
-       
-    //desmarca todos do grupo
-    aux.dismissClassGroup(inputAlign,'active');
-    //marca a desejada
-    
-    this.classList.toggle('active')    
+    function setup(){       
+        //desmarca todos do grupo
+        aux.dismissClassGroup(inputAlign,'active');
+        //marca a desejada    
+        this.classList.toggle('active');
+        document.querySelector('.letras').style.textAlign = this.id;   
+    }
 
-    console.log(this)
-    
-    document.querySelector('.letras').style.textAlign = this.id;
-
-    console.log(document.querySelector('.letras').style.textAlign)
-
-   }
-   
-   //inputAlign.addEventListener('click',setAlign);  
+    document.querySelector('#left').click();
+      //inputAlign.addEventListener('click',setAlign);  
 }
 
-function setConfig(){
-    console.log(this)
-    console.log(inputFonte.value);
-    document.querySelector('.letras').style.fontSize = inputFonte.value + 'vh';
-    
+function setConfig(){    
+    document.querySelector('.letras').style.fontSize = inputFonte.value + 'vh';    
     //document.getElementById('fonte').value = inputFonte.value
     ////let fontSize = inputFonte.getValue();
 }
@@ -173,6 +163,8 @@ function setFavorite(){
    
 function getMus() {
     listaDados.innerHTML='' 
+    //console.log(aux.normalizeInput(this.value))
+    
     let localMusic = apiVagalume.getMusLocal(this.value);    
     localMusic.forEach(dado => {        
             let div = aux.cria('div');
@@ -185,7 +177,6 @@ function getMus() {
     function getLetra(){
         getLetraById(this.id);
         setTimeout(dismissModal(containerPesquisa),300);
-        console.log(1)
     }
 }
 
@@ -212,7 +203,8 @@ function getArt() {
 function autoComp(art){
     listaDados.innerHTML ='';    
     art.forEach(dado => {   
-        const div = aux.cria('div');      
+        const div = aux.cria('div');   
+        div.id = dado.band;    
         div.onclick =  selectArt; 
         div.append(dado.band);    
         listaDados.append(div);
@@ -254,9 +246,12 @@ function attLetra(lista){
 
  function selectArt(){     
    // nomeArtista.innerText = this.innerHTML ;
-    let artEscolhido = this.value ? this.value : inputArt.value = this.innerHTML;    
+
+    let artEscolhido = this.value ? this.value : aux.normalizeInput(this.id);
+    inputArt.value = this.id;    
+    console.log(aux.normalizeInput(this.id));
     apiVagalume.getArtInfo(artEscolhido); 
-    fotoArtista.id = apiVagalume.getFoto(this.innerHTML);
+    fotoArtista.id = apiVagalume.getFoto(aux.normalizeInput(this.id));
     inputMus.disabled = false;
     this.parentNode.innerHTML = '';
 }

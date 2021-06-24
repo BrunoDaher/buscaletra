@@ -66,23 +66,17 @@ export class Aux{
    }
 
     criaCustom(custom){       
-       
        let obj = this.cria(custom.tipo);
-       
        //custom.id ? obj.id = custom.id:"";
        obj.className = custom.nomeClasse;
-     
-        
        return obj;
    }
 
     arrayToList(custom){
         let container = this.cria('div');
         container.id = custom.id;
-        container.className = custom.nomeClasse;
-      
-        let cont = 0;
-        
+        container.className = custom.nomeClasse;      
+        let cont = 0;        
         custom.arr.forEach(element => {
             custom.nomeClasse = custom.classes[cont];
             
@@ -94,8 +88,6 @@ export class Aux{
             let x;
             let xFinal;
             let event = (e)=>{
-
-
                // console.log(e.type)
                 turn = e.type=='touchstart' ? true:false;            
                 if(turn){
@@ -127,7 +119,12 @@ export class Aux{
         str = str.toLowerCase();
         str = str.replaceAll('.','');
         str = str.replaceAll(' ','-');  
+        str = str.replaceAll('&','');  
+        str = str.replaceAll('--','-');  
+        
         //removeacentos
+        
+        
         str = str.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
        
         return str;

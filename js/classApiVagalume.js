@@ -68,6 +68,7 @@ export class ApiVagalume {
         str = str.replaceAll('.','');
         str = str.replaceAll(' ','-');  
         str = str.replaceAll('/','-');  
+
         //removeacentos
         str = str.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
        
