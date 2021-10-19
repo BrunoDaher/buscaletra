@@ -12,7 +12,7 @@ export class Aux{
     document.querySelector(seletor).addEventListener('click', event => {                        
         this.toggle('.' + classe,'active');
     });
-}
+    }
 
     menuClear(seletor){
         seletor.forEach(item => item.classList.remove('active'));
@@ -123,10 +123,7 @@ export class Aux{
         str = str.replaceAll('--','-');  
         
         //removeacentos
-        
-        
         str = str.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
-       
         return str;
     }
 

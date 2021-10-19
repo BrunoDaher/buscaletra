@@ -1,11 +1,13 @@
 import ApiVagalume from './classApiVagalume.js';
 import Aux from './classAux.js';
 import Dao from './classDao.js';
+import Teclado from './classTeclado.js';
 
 //libs
 const dao = new Dao();
 const apiVagalume = new ApiVagalume(dao);
 const aux = new Aux();
+const teclado = new Teclado();
 
 //componentes
     //Header
@@ -14,7 +16,8 @@ const aux = new Aux();
         const btnShow = document.querySelector('#showPesq');
     
     //pesquisa
-    const containerPesquisa = document.querySelector('#pesquisa');
+    
+     const containerPesquisa = document.querySelector('#pesquisa');
         const inputArt = document.getElementById('buscaArtista');   
             inputArt.addEventListener('input',getArt);
             inputArt.addEventListener('click',aux.selfClean );
@@ -43,6 +46,10 @@ const aux = new Aux();
              const playItem = document.querySelector("#playlistItem");  
           const btnPlaylist = document.querySelector('#btnPlaylist');
 
+    //album
+    const containerDiscog = document.querySelector('#discog');
+         //   const btnDiscog = document.querySelector('#btnDiscog');
+         const albName = document.querySelector("#artName");
     //letra
         const letraContent = document.querySelector('#letra');   
 
@@ -54,16 +61,36 @@ const aux = new Aux();
  init();
 
 function init (){   
-    btnShow.addEventListener('click',showSearchBar);    
-    btnPlaylist.addEventListener('click',playList); 
+    btnShow.onclick = showSearchBar;    
+    btnPlaylist.onclick = playList; 
+    fotoArtista.onclick = artist;
 
     let letraContainer = document.querySelector('#letraContainer');
     
    letraContainer.addEventListener('touchstart',toutch,{passive: true});    
     letraContainer.addEventListener('touchend',toutch,{passive: true});    
-    letraContainer.addEventListener('scroll',toutch,{passive: true});      
+    letraContainer.addEventListener('scroll',toutch,{passive: true});  
+
 }
 
+function artist(){
+    //let attr = this.getAttribute('toggle')  ? this.getAttribute('toggle') :  ;
+
+    if(!(this.src.includes('.ico'))){
+        this.classList.toggle('active')
+
+        dismissModal(containerPesquisa);
+        dismissModal(containerPlaylist);
+
+        
+  
+        //console.log(dao.getSessionJSON('artist').albums)
+        
+    // document.getElementById('artImg').src = fotoArtista.src;
+
+        aux.toggle(".discog",'active')
+    }
+}
 
 function setAlign(){   
    
@@ -158,6 +185,7 @@ function playList (e){
 
     toggleDiv.classList.toggle('active');
     dismissModal(containerPesquisa);
+    dismissModal(containerDiscog);
   
  }
 
@@ -169,11 +197,13 @@ function showSearchBar(){
     //this.classList.toggle('active');
     containerPesquisa.classList.toggle('active'); 
     dismissModal(containerPlaylist); 
+    dismissModal(containerDiscog);
 } 
 
 function setFavorite(){
     dao.saveMus();  
     dismissModal(containerPesquisa);
+    dismissModal(containerDiscog)
 }
    
 function getMus() {
@@ -191,7 +221,12 @@ function getMus() {
 
     function getLetra(){
         getLetraById(this.id);
-        setTimeout(dismissModal(containerPesquisa),300);
+        setTimeout(
+            ()=>{
+              dismissModal(containerPesquisa),
+              dismissModal(containerDiscog)
+            }
+            ,300);
     }
 }
 
@@ -199,9 +234,11 @@ function getLetraById(busca) {
     let letra = apiVagalume.getMusicById(busca);    
         letra.then((response) => response.json())
             .then((data) => {                           
-            aux.addClass('#letra','active');                             
+            aux.addClass('#letra','active');            
+            console.log(data)                 
             //updateInfo(apiVagalume.modelMusica(data));
             let lista = updateInfo(apiVagalume.modelMusica(data));
+            
             dao.saveTemp(lista);
     });    
 }
@@ -231,6 +268,7 @@ function autoComp(art){
 function updateInfo(lista){ 
     lista.foto = fotoArtista.id;    
     fotoArtista.src = lista.foto;
+    
      attLetra(lista);
     //setTimeout(()=>{dismissModal(containerPesquisa)},400);    
     return lista;
@@ -246,7 +284,17 @@ function configs(){
 }
 
 function attLetra(lista){
-    fotoArtista.src = lista.foto; 
+    fotoArtista.src = lista.alb.url ? lista.alb.url:lista.foto; 
+    
+    albName.innerText = lista.alb.nome ? lista.alb.nome : 'nada';
+
+
+
+   
+    document.getElementById('artImg').src = fotoArtista.src;
+    containerDiscog.style.backgroundImage = `url("${fotoArtista.src}")`;
+
+    //console.log(lista.alb.url ? "sim":"nao");
     //lista.foto = lista.foto.replace('http://','https://');
    
     letraContent.innerHTML='';
@@ -255,6 +303,7 @@ function attLetra(lista){
     letraContent.setAttribute('idLetra',lista.id);
         nomeMusica.innerText = lista.nomeMus;
        nomeArtista.innerText = lista.nomeArt ;
+       inputArt.value = lista.nomeArt;
               inputMus.value = lista.nomeMus;
               listaDados.innerHTML = '';
 }
@@ -264,9 +313,14 @@ function attLetra(lista){
 
     let artEscolhido = this.value ? this.value : aux.normalizeInput(this.id);
     inputArt.value = this.id;    
-    console.log(aux.normalizeInput(this.id));
+    //console.log(aux.normalizeInput(this.id));
     apiVagalume.getArtInfo(artEscolhido); 
+    //console.log(this)
     fotoArtista.id = apiVagalume.getFoto(aux.normalizeInput(this.id));
+    
+    console.log(dao.getLocalJSON('temp') ? 'sim':'nao')
+    //fotoArtista.id = dao.getLocalJSON('temp').alb.url;
+
     inputMus.disabled = false;
     this.parentNode.innerHTML = '';
 }

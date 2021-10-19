@@ -2,7 +2,8 @@ button:hover, button.active{
     cursor: pointer;      
     outline: none;
     color:white;
-    background-color: #1e90ff;
+    /*background-color: #1e90ff;*/
+    background-color: #4f8ecb96; 
     transition: background-color 0.3s;
 }
 

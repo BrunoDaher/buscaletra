@@ -6,25 +6,41 @@
     text-decoration: none;     
   }
 
-  .config , .config{
-    display: grid;
+
+  
+
+  .config {
+    display: flex;
     padding: 10px;
+    font-size: 3vh;
   }
   
+#colunas{
+  display: flex;
+}
+
+  #fonteConfig{    
+    padding: 2vh;
+    display: grid;
+  }
+
   .config  label{
     margin-left: 5px;
     font-family: cursive;
-    
   }
 
-  #fonte{
   
-  }
+    .subMus{
+      font-size: 3vh;            
+    }
 
    .subArt{
     color: rgb(35, 176, 211);
-    font-size: 15px;
-    margin: 1px;
+    font-size: 3vh;    
+   }
+
+   .info > div .subArt{
+    margin: 0.4vh;
    }
 
   .bar > div{    
@@ -68,7 +84,7 @@
     z-index: 1;
   } 
     
-  .menuItem:hover, .menuItem:focus,.listas > div:hover,input:hover, input:focus{
+  .menuItem:hover, .menuItem:focus,.listas > div:hover,input:hover, input:focus, #listaDados > div.active{
     color:247, 245, 245;
     font-style: italic;
     text-decoration: none;
@@ -81,7 +97,7 @@
 
   .info{
     text-align: left;   
-    font-size: 18px;
+    /*font-size: 18px;*/
     line-height: 16px;  
   } 
 
@@ -101,7 +117,7 @@
     color: white;    
     display: grid;
     gap: 1em;
-    margin: 6px;
+    padding: 6px;
     max-height: 64vh;    
     overflow-y: auto;
   }
@@ -115,16 +131,36 @@
     transition: all 0.6s;
   }
 
-  .playlist{ 
+  .playlist, .discog{ 
+    top: 10vh;
     font-size:3vh;    
     position: fixed;        
     left: 0;
     width: 100%;
     color:white;
-    background: #060910ed;    
+  
     opacity: 0;
+    transition: all 0.3s; 
+  }
+
+  .playlist{
     height: 100%; 
-    transition: opacity 0.3s; 
+    background: #060910ed;  
+  }
+
+  .discog.active{
+    
+    opacity: 1;
+    
+    z-index: 10;
+    height: none !important;
+    /*background: #246287ed !important;*/
+    transition: all 0.3s;
+  }
+
+  #artImg {
+    width: 7em;
+    height: 7em;
   }
     
   .listas{        
@@ -147,6 +183,22 @@
     border-color: #545454; */
   }
 
+  #fotoArtista{
+    width: 7vh;
+    border-radius: 4px;
+    height: 7vh;
+    padding: 0em;
+    border-width: 2px;
+    border-style: double;
+    border-color: #565050;
+  }
+
+  #fotoArtista.active{
+    -webkit-box-shadow: 5px 5px 5px 0px #000000, inset 4px 4px 15px 0px #000000, 4px -3px 2px 0px rgba(0,0,0,0); 
+box-shadow: 5px 5px 5px 0px #000000, inset 4px 4px 15px 0px #000000, 4px -3px 2px 0px rgba(0,0,0,0);
+
+  }
+
   .active{
     z-index: 10;
     opacity: 1;
@@ -160,6 +212,10 @@
       font-size: 2em;
       letter-spacing: 3px;
       line-height: 1em;
+    }
+
+    .config{
+      display: flex;
     }
 
     #colunas{

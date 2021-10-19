@@ -38,7 +38,7 @@ export class ApiVagalume {
     }
   
     getMusicById(musId){          
-        const path = `${url}/search.php?${this.apiKey}&musid=${musId}`;       
+        const path = `${url}/search.php?${this.apiKey}&musid=${musId}&extra=alb`;       
         return fetch(path);
      }
     
@@ -60,7 +60,9 @@ export class ApiVagalume {
         let letraMus =data.mus[0].text
         let nomeMus = data.mus[0].name
         let nomeArt = data.art.name
-        return {id,letraMus,nomeMus,nomeArt}
+        let alb = {url:data.mus[0].alb.img.replace('-W125',''), nome:data.mus[0].alb.name};
+        
+        return {id,letraMus,nomeMus,nomeArt,alb}
     }
 
     normalizeInput(str){
