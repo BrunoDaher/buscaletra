@@ -77,7 +77,7 @@ function init (){
 
         let lng = document.getElementById('language');
 
-        alert(usrlang);
+        alert(usrlang); //teste
 
 
         lng.setAttribute("src",x[usrlang]);
