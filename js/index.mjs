@@ -61,6 +61,24 @@ const teclado = new Teclado();
  init();
 
 function init (){   
+
+
+    //idioma
+        let usrlang = navigator.language|| navigator.userLanguage;
+        // document.getElementById('favorite').textContent=usrlang;
+
+        console.log(usrlang)
+
+        let x = {
+            'pt':'https://flagicons.lipis.dev/flags/4x3/br.svg',
+            'en-US':'https://flagicons.lipis.dev/flags/4x3/um.svg',
+            'en-GB-oxendict':'https://flagicons.lipis.dev/flags/4x3/gb.svg'
+        };
+
+        let lng = document.getElementById('language');
+        lng.setAttribute("src",x[usrlang]);
+
+
     btnShow.onclick = showSearchBar;    
     btnPlaylist.onclick = playList; 
     fotoArtista.onclick = artist;
@@ -81,14 +99,9 @@ function artist(){
 
         dismissModal(containerPesquisa);
         dismissModal(containerPlaylist);
-
-        
-  
-        //console.log(dao.getSessionJSON('artist').albums)
-        
+    //console.log(dao.getSessionJSON('artist').albums)
     // document.getElementById('artImg').src = fotoArtista.src;
-
-        aux.toggle(".discog",'active')
+    aux.toggle(".discog",'active')
     }
 }
 
