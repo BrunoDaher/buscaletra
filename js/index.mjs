@@ -73,7 +73,8 @@ function init (){
             'pt':'https://flagicons.lipis.dev/flags/4x3/br.svg',
             'pt-BR':'https://flagicons.lipis.dev/flags/4x3/br.svg',
             'en-US':'https://flagicons.lipis.dev/flags/4x3/um.svg',
-            'en-GB-oxendict':'https://flagicons.lipis.dev/flags/4x3/gb.svg'
+            'en-GB-oxendict':'https://flagicons.lipis.dev/flags/4x3/gb.svg',
+            'en-GB':'https://flagicons.lipis.dev/flags/4x3/gb.svg'
         };
 
         let lng = document.getElementById('language');
