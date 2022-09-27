@@ -76,6 +76,10 @@ function init (){
         };
 
         let lng = document.getElementById('language');
+
+        alert(usrlang);
+
+
         lng.setAttribute("src",x[usrlang]);
 
 
