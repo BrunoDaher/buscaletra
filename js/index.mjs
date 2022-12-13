@@ -254,16 +254,38 @@ function getLetraById(busca) {
         letra.then((response) => response.json())
             .then((data) => {                           
             aux.addClass('#letra','active');            
-            console.log(data)                 
+           // console.log(data)                 
             //updateInfo(apiVagalume.modelMusica(data));
-            let lista = updateInfo(apiVagalume.modelMusica(data));
+            console.log("imprimindo dados da busca Music by ID");
+            console.log(data);
+            let lista = updateInfo(modelMusica(data));
+
+            console.log(lista)
             
             dao.saveTemp(lista);
     });    
 }
 
 
+function modelMusica(data){        
+
+    
+    let id = data.mus[0].id
+    let letraMus =data.mus[0].text
+    let nomeMus = data.mus[0].name
+    let nomeArt = data.art.name;
+    
+    let alb = "";
+    if (data.mus[0].alb){
+        alb =  {url:data.mus[0].alb.img.replace('-W125',''), nome:data.mus[0].alb.name};
+    }
+
+    return {id,letraMus,nomeMus,nomeArt,alb}
+}
+
+
 function getArt() {
+   
     let art = apiVagalume.getArt(this.value);    
         art.then((response) => response.json())
             .then((data) => {                              
@@ -303,12 +325,12 @@ function configs(){
 }
 
 function attLetra(lista){
+
+//console.log(lista);
+
     fotoArtista.src = lista.alb.url ? lista.alb.url:lista.foto; 
     
     albName.innerText = lista.alb.nome ? lista.alb.nome : 'nada';
-
-
-
    
     document.getElementById('artImg').src = fotoArtista.src;
     containerDiscog.style.backgroundImage = `url("${fotoArtista.src}")`;
@@ -337,7 +359,7 @@ function attLetra(lista){
     //console.log(this)
     fotoArtista.id = apiVagalume.getFoto(aux.normalizeInput(this.id));
     
-    console.log(dao.getLocalJSON('temp') ? 'sim':'nao')
+   // console.log(dao.getLocalJSON('temp') ? 'sim':'nao')
     //fotoArtista.id = dao.getLocalJSON('temp').alb.url;
 
     inputMus.disabled = false;

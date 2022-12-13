@@ -28,7 +28,7 @@ export class ApiVagalume {
 
     getFoto(band){
         band = this.normalizeInput(band);
-        console.log(`${url}/${band}/images/profile.jpg`);
+     //   console.log(`${url}/${band}/images/profile.jpg`);
         return `${url}/${band}/images/profile.jpg`
     }
 
@@ -56,12 +56,19 @@ export class ApiVagalume {
     
 
     modelMusica(data){        
+        
         let id = data.mus[0].id
         let letraMus =data.mus[0].text
         let nomeMus = data.mus[0].name
-        let nomeArt = data.art.name
-        let alb = {url:data.mus[0].alb.img.replace('-W125',''), nome:data.mus[0].alb.name};
+        let nomeArt = this.normalizeInput(data.art.name);
         
+        let alb = "";
+        if (data.mus[0].alb){
+
+            alb =  {url:data.mus[0].alb.img.replace('-W125',''), nome:data.mus[0].alb.name};
+
+        }
+
         return {id,letraMus,nomeMus,nomeArt,alb}
     }
 
@@ -70,6 +77,7 @@ export class ApiVagalume {
         str = str.replaceAll('.','');
         str = str.replaceAll(' ','-');  
         str = str.replaceAll('/','-');  
+        str = str.replaceAll('!','');
 
         //removeacentos
         str = str.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
@@ -79,7 +87,8 @@ export class ApiVagalume {
 
     getArtInfo(art){                
         art = this.normalizeInput(art);
-        let path = `https://www.vagalume.com.br/${art}/index.js`;              
+        let path = `https://www.vagalume.com.br/${art}/index.js`;    
+        console.log(art);          
         this.fetchApi(path);        
     }
  
