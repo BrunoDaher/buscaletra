@@ -92,13 +92,11 @@ pre{
   transition: opacity 0.4s;
 }
 
-.pesquisa > input, input:disabled{ 
-   font-size: 3em;  
+.pesquisa > input, input:disabled{  
     margin:3px;
     margin:3px;
     line-height: 2.5em;        
     border-radius: 4px;    
-    font-size: 17px;
     width: 100%;
     text-transform: capitalize;
     text-align: center;      

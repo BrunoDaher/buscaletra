@@ -32,11 +32,12 @@
 
    .subArt{
     color: rgb(35, 176, 211);
-    font-size: 3vh;    
+    font-size: 2.5vh;
+    font-style: italic;    
    }
 
    .info > div .subArt{
-    margin: 0.4vh;
+    margin: 1vh;
    }
 
   .bar > div{    
@@ -129,6 +130,7 @@
 
   .playlist, .discog{ 
     top: 10vh;
+    top: 70px;
     font-size:3vh;    
     position: fixed;        
     left: 0;
@@ -210,6 +212,10 @@ box-shadow: 5px 5px 5px 0px #000000, inset 4px 4px 15px 0px #000000, 4px -3px 2p
       line-height: 1em;
     }
 
+    .info > div .subArt{
+      margin: 1.8vh;
+     }
+
     .config{
       display: flex;
     }
@@ -217,4 +223,20 @@ box-shadow: 5px 5px 5px 0px #000000, inset 4px 4px 15px 0px #000000, 4px -3px 2p
     #colunas{
       display: none;
     }
+
+  }
+ 
+  /*ipad pro*/
+
+  @media (min-width: 600px) {
+    input {
+      font-size: 1.4em;
+    }
+    
+    #listaDados > div {
+      font-size: 1.4em;
+    }
+
+   
+
   }

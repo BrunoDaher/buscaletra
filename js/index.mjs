@@ -139,6 +139,7 @@ function setAlign(){
 }
 
 function fontConfig(){    
+    
     document.querySelector('.letras').style.fontSize = inputFonte.value + 'vh';    
     //document.getElementById('fonte').value = inputFonte.value
     ////let fontSize = inputFonte.getValue();
@@ -173,8 +174,7 @@ const swipper = aux.swippe;
 
 function playList (e){    
     let lista = dao.getLocalJSON('lista');
-
-    
+ 
     let toggleDiv = document.querySelector(this.getAttribute('toggle'));
     playItem.innerHTML = ''
 
@@ -256,8 +256,8 @@ function getLetraById(busca) {
             aux.addClass('#letra','active');            
            // console.log(data)                 
             //updateInfo(apiVagalume.modelMusica(data));
-            console.log("imprimindo dados da busca Music by ID");
-            console.log(data);
+           // console.log("imprimindo dados da busca Music by ID");
+            //console.log(data);
             let lista = updateInfo(modelMusica(data));
 
             console.log(lista)
