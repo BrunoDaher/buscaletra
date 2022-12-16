@@ -37,6 +37,10 @@ button{
     transition: background-color 0.3s; 
 }
 
+button > img{
+  width:7vh
+}
+
 .bar > div{    
     width: 35px;
     height: 5px;
@@ -119,6 +123,10 @@ pre{
 
   @media (max-width: 700px){
     button{
-      font-size: 4vh;
+      font-size: 3vh;
+    }
+
+    button > img{
+      width:5vh
     }
   }
