@@ -27,7 +27,7 @@ button, input{
  }
 
 button{
-  font-size: 3vh;
+  font-size: 4vh;
     color:white;
     background:#17367900;     
     border-color: #1b1b1bc4; 
@@ -70,8 +70,9 @@ pre{
 
 .pesquisa{
   display: flex;
-  width: 100%;
+  /*width: 100%;*/
   background-color: #2e2e2e;
+  padding: 1em;
 }
 
 #pesquisa{
@@ -114,4 +115,10 @@ pre{
   
   ::-ms-input-placeholder { /* Microsoft Edge */
    color: rgb(255, 255, 255);
+  }
+
+  @media (max-width: 700px){
+    button{
+      font-size: 4vh;
+    }
   }
