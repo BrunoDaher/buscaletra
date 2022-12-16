@@ -120,6 +120,9 @@ footer > img{
     border-radius:4px;
 }
 
-@media (min-width: 1024px) {
-   
+@media (max-height: 600px) {
+   main{
+    padding-top: 13vh;
+    padding-bottom: 13vh;
+   }
 }

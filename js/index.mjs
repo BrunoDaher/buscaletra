@@ -67,8 +67,16 @@ function init (){
         let usrlang = navigator.language|| navigator.userLanguage;
         // document.getElementById('favorite').textContent=usrlang;
 
-        console.log(usrlang)
+        let str = navigator.userAgent;
+        console.log(str);
+        
 
+        if(str.includes('Mobile')){
+            document.getElementById('fonteConfig').style.display = 'grid';
+
+        }
+        
+        
         let x = {
             'pt':'https://flagicons.lipis.dev/flags/4x3/br.svg',
             'pt-BR':'https://flagicons.lipis.dev/flags/4x3/br.svg',

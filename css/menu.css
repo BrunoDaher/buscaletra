@@ -237,6 +237,14 @@ box-shadow: 5px 5px 5px 0px #000000, inset 4px 4px 15px 0px #000000, 4px -3px 2p
       font-size: 1.4em;
     }
 
-   
+    .playlist, .discog {
+      top:  11%;
+    }
+ }
 
+
+ @media (max-height:600px){
+  .playlist, .discog {
+    top:  14%;
   }
+}
