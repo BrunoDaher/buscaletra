@@ -37,8 +37,8 @@ button{
     transition: background-color 0.3s; 
 }
 
-button > img{
-  width:7vh
+button > img {
+  width: 7vh;
 }
 
 .bar > div{    
