@@ -43,6 +43,7 @@ fieldset > form {
 legend{
     text-transform: capitalize;
     margin: 1em auto;
+    font-family: fantasy;
     border-radius: 4px;
     font-size: 1em;
     text-shadow: 2px 4px 4px #24416c, 4px 5px 10px #31658b, 0 -10px 20px #1e4860, 4px 3px 40px #3c6285;

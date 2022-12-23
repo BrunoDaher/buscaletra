@@ -148,12 +148,10 @@
 
   .discog.active{
     
-    opacity: 1;
-    
     z-index: 10;
     height: none !important;
-    /*background: #246287ed !important;*/
-    transition: all 0.3s;
+    background:#060707d1;
+    transition:  0.3s;
   }
 
   #artImg {

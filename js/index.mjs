@@ -38,6 +38,7 @@ const teclado = new Teclado();
               listaDados.addEventListener('click',(e)=>{
                   if(e.target.id == listaDados.id){
                      btnShow.click();
+                     console.log('hide Menu')
                   }
                 });
 
@@ -341,7 +342,7 @@ function attLetra(lista){
     albName.innerText = lista.alb.nome ? lista.alb.nome : 'nada';
    
     document.getElementById('artImg').src = fotoArtista.src;
-    containerDiscog.style.backgroundImage = `url("${fotoArtista.src}")`;
+   //containerDiscog.style.backgroundImage = `url("${fotoArtista.src}")`;
 
     //console.log(lista.alb.url ? "sim":"nao");
     //lista.foto = lista.foto.replace('http://','https://');
