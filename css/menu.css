@@ -33,7 +33,8 @@
    .subArt{
     color: rgb(35, 176, 211);
     font-size: 1.5em;
-    font-style: italic;    
+    font-style: italic;   
+    padding: 7px; 
    }
 
    .info > div .subArt{
@@ -131,8 +132,7 @@
 
   .playlist, .discog{ 
     
-    top:9.5vh;;
-    font-size:3vh;    
+    top:9.5vh;;   
     position: fixed;        
     left: 0;
     width: 100%;
@@ -151,6 +151,7 @@
     padding: 1vh;
     transition: all 0.1s;
     z-index: 10;
+    font-size: 1em;
     height: none !important;
     background:#060707fe;
     transition: all 0.1s;
@@ -243,5 +244,7 @@ box-shadow: 5px 5px 5px 0px #000000, inset 4px 4px 15px 0px #000000, 4px -3px 2p
 
 
  @media (max-height:600px){
-
+  #pesquisa, #playlist, #discog{
+    top:  16vh;
+  }
 }

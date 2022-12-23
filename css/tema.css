@@ -124,7 +124,11 @@ footer > img{
 
 @media (max-height: 600px) {
    main{
-    padding-top: 13vh;
-    padding-bottom: 13vh;
+    padding-top: 19vh;
+    padding-bottom: 19vh;
+   }
+
+   footer{
+    padding: 1vh
    }
 }
