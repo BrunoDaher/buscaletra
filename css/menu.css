@@ -113,7 +113,8 @@
   .box{
     color: white;    
     display: grid;
-    gap: 1em;
+    /*gap: 1em;
+    */
     padding: 6px;
     max-height: 64vh;    
     overflow-y: auto;
@@ -129,8 +130,8 @@
   }
 
   .playlist, .discog{ 
-    top: 10vh;
-    top: 70px;
+    
+    top:9.5vh;;
     font-size:3vh;    
     position: fixed;        
     left: 0;
@@ -138,7 +139,7 @@
     color:white;
   
     opacity: 0;
-    transition: all 0.3s; 
+    transition: all 0.1s; 
   }
 
   .playlist{
@@ -147,11 +148,12 @@
   }
 
   .discog.active{
-    
+    padding: 1vh;
+    transition: all 0.1s;
     z-index: 10;
     height: none !important;
     background:#060707d1;
-    transition:  0.3s;
+    transition: all 0.1s;
   }
 
   #artImg {
@@ -236,14 +238,10 @@ box-shadow: 5px 5px 5px 0px #000000, inset 4px 4px 15px 0px #000000, 4px -3px 2p
       font-size: 1.4em;
     }
 
-    .playlist, .discog {
-      top:  11%;
-    }
+
  }
 
 
  @media (max-height:600px){
-  .playlist, .discog {
-    top:  14%;
-  }
+
 }

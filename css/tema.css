@@ -43,15 +43,16 @@ fieldset > form {
 legend{
     text-transform: capitalize;
     margin: 1em auto;
-    font-family: fantasy;
+    font-family: monospace;
     border-radius: 4px;
     font-size: 1em;
-    text-shadow: 2px 4px 4px #24416c, 4px 5px 10px #31658b, 0 -10px 20px #1e4860, 4px 3px 40px #3c6285;
-
+    /*text-shadow: 2px 4px 4px #24416c, 4px 5px 10px #31658b, 0 -10px 20px #1e4860, 4px 3px 40px #3c6285;
+    */
 }
 
 #artName{
-    text-shadow: #bfc167 4px 4px 7px;
+    /*text-shadow: #bfc167 4px 4px 7px;
+    */
     margin: 10px 10px 0 0;
     padding: 0 0 3px 7px;
 }
