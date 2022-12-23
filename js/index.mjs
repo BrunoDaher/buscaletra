@@ -382,5 +382,7 @@ function attLetra(lista){
     inputMus.disabled = false;
     
     this.parentNode.innerHTML = '';
-    getMus();
+    
+
+    setTimeout(()=>{getMus();},800);
 }
