@@ -157,6 +157,7 @@
   #artImg {
     width: 7em;
     height: 7em;
+    border-radius: 1em;
   }
     
   .listas{        
@@ -181,7 +182,7 @@
 
   #fotoArtista{
     width: 7vh;
-    border-radius: 4px;
+    border-radius: 4em;
     height: 7vh;
     padding: 0em;
     border-width: 2px;

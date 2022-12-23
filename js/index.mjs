@@ -36,9 +36,12 @@ const teclado = new Teclado();
         
         const listaDados = document.querySelector('#listaDados');
               listaDados.addEventListener('click',(e)=>{
-                  if(e.target.id == listaDados.id){
+                  
+                //limpar campo da musica
+            
+                if(e.target.id == listaDados.id){
                      btnShow.click();
-                     console.log('hide Menu')
+                     console.log('hideMenu')
                   }
                 });
 
@@ -235,10 +238,14 @@ function setFavorite(){
 }
    
 function getMus() {
+  
     listaDados.innerHTML='' 
     //console.log(aux.normalizeInput(this.value))
-    
-    let localMusic = apiVagalume.getMusLocal(this.value);    
+  
+  //
+  let x = this ? this.value : '';
+
+    let localMusic = apiVagalume.getMusLocal(x);    
     localMusic.forEach(dado => {        
             let div = aux.cria('div');
             div.onclick = getLetra; 
@@ -359,6 +366,7 @@ function attLetra(lista){
 }
 
  function selectArt(){     
+
    // nomeArtista.innerText = this.innerHTML ;
 
     let artEscolhido = this.value ? this.value : aux.normalizeInput(this.id);
@@ -372,5 +380,7 @@ function attLetra(lista){
     //fotoArtista.id = dao.getLocalJSON('temp').alb.url;
 
     inputMus.disabled = false;
+    
     this.parentNode.innerHTML = '';
+    getMus();
 }
