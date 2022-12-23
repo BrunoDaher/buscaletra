@@ -27,12 +27,12 @@
 
   
     .subMus{
-      font-size: 3vh;            
+      font-size: 1em;            
     }
 
    .subArt{
     color: rgb(35, 176, 211);
-    font-size: 2.5vh;
+    font-size: 1.5em;
     font-style: italic;    
    }
 
@@ -126,7 +126,7 @@
 
   .hide{
     margin-left: 20em;    
-    transition: all 0.6s;
+    transition: all 0.1s;
   }
 
   .playlist, .discog{ 

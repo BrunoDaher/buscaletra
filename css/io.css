@@ -27,7 +27,7 @@ button, input{
  }
 
 button{
-  font-size: 4vh;
+    font-size: 2em;
     color:white;
     background:#17367900;     
     border-color: #1b1b1bc4; 
@@ -98,6 +98,7 @@ pre{
 }
 
 .pesquisa > input, input:disabled{  
+  font-size: 1em;
     margin:3px;
     margin:3px;
     line-height: 2.5em;        
@@ -126,7 +127,5 @@ pre{
       font-size: 3vh;
     }
 
-    button > img{
-      width:5vh
-    }
+   
   }
