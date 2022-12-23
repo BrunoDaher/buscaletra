@@ -385,4 +385,5 @@ function attLetra(lista){
     
 
     setTimeout(()=>{getMus();},800);
+    inputMus.value='';
 }
