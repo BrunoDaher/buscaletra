@@ -60,13 +60,28 @@ const teclado = new Teclado();
     //elementos do Footer
         const nomeArtista = document.querySelector('#nomeArtista');
         const nomeMusica = document.querySelector('#nomeMusica');
-        const fotoArtista = document.querySelector('#fotoArtista');       
+        const fotoArtista = document.querySelector('#fotoArtista');      
+
+       
+    
+
+        addEventListener('orientationchange', attEvent);
 
  init();
+
+ function attEvent(event){
+    let orientation = (screen.orientation || {}).type || screen.mozOrientation || screen.msOrientation;
+    console.log(orientation);
+ }
 
 function init (){   
 
 
+     
+
+   //console.log(orientation);
+
+  
     //idioma
         let usrlang = navigator.language|| navigator.userLanguage;
         // document.getElementById('favorite').textContent=usrlang;

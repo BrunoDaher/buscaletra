@@ -85,9 +85,9 @@ main a:hover, a:focus{
 }
 
 main{
-    padding-top: 10vh;
+    padding-top: 12vh;
     position: relative;
-    padding-bottom: 10vh;
+    padding-bottom: 12vh;
 }
 
 header{
