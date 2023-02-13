@@ -57,3 +57,11 @@
   }
 
   
+@media (max-width) {
+
+  .gridDiv{
+  
+    grid-template-columns: 1fr 3fr;
+  }
+
+}
