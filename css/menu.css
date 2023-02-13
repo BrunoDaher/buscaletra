@@ -245,7 +245,7 @@ box-shadow: 5px 5px 5px 0px #000000, inset 4px 4px 15px 0px #000000, 4px -3px 2p
 
  @media (max-height:600px){
   #pesquisa, #playlist, #discog{
-    top:  16vh;
+    top:  14;
   }
 }
 
@@ -265,5 +265,9 @@ box-shadow: 5px 5px 5px 0px #000000, inset 4px 4px 15px 0px #000000, 4px -3px 2p
 
   .menu{
     display: grid;
+  }
+    #pesquisa, #playlist, #discog{
+      top:  14;
+    }
 
 }
