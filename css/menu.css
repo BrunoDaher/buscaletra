@@ -247,3 +247,22 @@ box-shadow: 5px 5px 5px 0px #000000, inset 4px 4px 15px 0px #000000, 4px -3px 2p
     top:  16vh;
   }
 }
+
+@media (orientation:landscape){
+
+  .box{
+    color: white;
+    display: grid;
+    gap: 1em;
+    padding: 6px;
+    margin: 1em;
+    width: max-content;
+    /* max-height: 64vh; */
+    /* max-height: 64vh; */
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+
+  .menu{
+    display: grid;
+
+}
