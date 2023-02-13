@@ -267,7 +267,7 @@ box-shadow: 5px 5px 5px 0px #000000, inset 4px 4px 15px 0px #000000, 4px -3px 2p
     display: grid;
   }
     #pesquisa, #playlist, #discog{
-      top:  14;
+      top:  14vh;
     }
 
 }
